@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/weltuhr"
+        android:icon="@drawable/ic_account_circle_orange_24dp"
+        android:title="Weltuhr" />
+    <item
+        android:id="@+id/alarm"
+        android:icon="@drawable/ic_access_alarm_orange_24dp"
+        android:title="Alarm" />
+    <item
+        android:id="@+id/stoppuhr"
+        android:icon="@drawable/ic_timer_orange_24dp"
+        android:title="Stoppuhr" />
+    <item
+        android:id="@+id/timer"
+        android:icon="@drawable/ic_hourglass_empty_orange_24dp"
+        android:title="Timer" />
+</menu>
