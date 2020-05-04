@@ -13,10 +13,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-//    lateinit var alarmFragment: AlarmFragment
-//    lateinit var stoppuhrFragment: StoppuhrFragment
-//    lateinit var timerFragment: TimerFragment
-//    lateinit var weltuhrFragment: WeltuhrFragment
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,54 +45,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-//        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
-//
-//        weltuhrFragment = WeltuhrFragment();
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.frame_layout, weltuhrFragment)
-//            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//            .commit()
-//
-//        bottomNavigationView.setOnNavigationItemReselectedListener { item ->
-//
-//            when (item.itemId) {
-//
-//                R.id.alarm -> {
-//                    alarmFragment = AlarmFragment();
-//                    supportFragmentManager
-//                        .beginTransaction()
-//                        .replace(R.id.frame_layout, alarmFragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit()
-//                }
-//
-//                R.id.stoppuhr -> {
-//                    stoppuhrFragment = StoppuhrFragment();
-//                    supportFragmentManager
-//                        .beginTransaction()
-//                        .replace(R.id.frame_layout, stoppuhrFragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit()
-//                }
-//                R.id.weltuhr -> {
-//                    weltuhrFragment = WeltuhrFragment();
-//                    supportFragmentManager
-//                        .beginTransaction()
-//                        .replace(R.id.frame_layout, weltuhrFragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit()
-//                }
-//                R.id.timer -> {
-//                    timerFragment = TimerFragment();
-//                    supportFragmentManager
-//                        .beginTransaction()
-//                        .replace(R.id.frame_layout, timerFragment)
-//                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                        .commit()
-//                }
-//            }
     }
 
     private fun loadFragment(fragment: Fragment) {
