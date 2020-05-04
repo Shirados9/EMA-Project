@@ -21,10 +21,6 @@ class WeltuhrFragment : Fragment() {
 
         val tz: TimeZone = TimeZone.getDefault()
 
-
-
-
-
         CurrentTimeZone.text = tz.getDisplayName()
         CurrentDate.text = currentDate
     }
