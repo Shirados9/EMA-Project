@@ -3,4 +3,28 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+
+    <string name="hint"> Bitte gebe eine Zeitzone ein </string>
+    <string-array name="zeitzonen">
+        <item>US Pacific Time (US) PDT UTC-7</item>
+        <item>US Mountain Time (US) MDT UTC-6</item>
+        <item>US Central Time (US) CDT UTC-5</item>
+        <item>US Eastern Time (US) EDT UTC-4</item>
+        <item>BR Rio de Janeiro, Brazil -03 UTC-3</item>
+        <Item>UTC UTC</Item>
+        <item>GB London, United Kingdom BST UTC+1</item>
+        <item>DE Berlin, Germany CEST UTC+2</item>
+        <item>RU Moscow, Russian Federation MSK UTC+3</item>
+        <item>AE Dubai, United Arab Emirates +04 UTC+4</item>
+        <item>IN Mumbai India IST UTC+5:30</item>
+        <item>SG Singapore, Singapore +08 UTC+8</item>
+        <item> CN Beijing, China CST UTC+8</item>
+        <item> CN China Time, China CST UTC+8</item>
+        <item> JP Tokyo, Japan JST UTC+9</item>
+        <item> AU Sydney, Australia AEST UTC+10</item>
+        <item> NZ Auckland, New Zealand NZST UTC+12</item>
+    </string-array>
 </resources>
