@@ -1,9 +1,11 @@
 package NWUP.com
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -18,6 +20,8 @@ import java.util.*
  * A simple [Fragment] subclass.
  */
 class WeltuhrFragment : Fragment() {
+
+
 
     fun setCurrentDate() {
         var calendar = Calendar.getInstance()
@@ -39,6 +43,15 @@ class WeltuhrFragment : Fragment() {
 
         //val boris = TextView("Blah")
         //binding.ViewLayout.addView(boris)
+
+        binding.gettopicktimezone.setOnClickListener {
+            val intent = Intent(context, PickTimeZone::class.java)
+            startActivity((intent))
+        }
+
+
+
+
 
         return binding
     }
