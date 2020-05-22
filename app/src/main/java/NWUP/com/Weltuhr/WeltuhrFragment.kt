@@ -1,15 +1,12 @@
-package NWUP.com
+package NWUP.com.Weltuhr
 
+import NWUP.com.R
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_weltuhr.*
 import kotlinx.android.synthetic.main.fragment_weltuhr.view.*
 import java.text.DateFormat
@@ -21,9 +18,9 @@ import java.util.*
  */
 class WeltuhrFragment : Fragment() {
 
-    fun setCurrentDate() {
-        var calendar = Calendar.getInstance()
-        var currentDate =  DateFormat.getDateInstance().format(calendar.getTime())
+    private fun setCurrentDate() {
+        val calendar = Calendar.getInstance()
+        val currentDate =  DateFormat.getDateInstance().format(calendar.getTime())
 
         val tz: TimeZone = TimeZone.getDefault()
 
@@ -37,7 +34,7 @@ class WeltuhrFragment : Fragment() {
 
     ): View? {
         // Inflate the layout for this fragment
-        var binding = inflater.inflate(R.layout.fragment_weltuhr, container, false)
+        val binding = inflater.inflate(R.layout.fragment_weltuhr, container, false)
 
         //val boris = TextView("Blah")
         //binding.ViewLayout.addView(boris)

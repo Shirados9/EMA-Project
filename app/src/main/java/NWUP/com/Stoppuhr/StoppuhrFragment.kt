@@ -1,5 +1,6 @@
-package NWUP.com
+package NWUP.com.Stoppuhr
 
+import NWUP.com.R
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

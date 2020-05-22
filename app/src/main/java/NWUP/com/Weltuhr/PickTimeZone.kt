@@ -1,13 +1,9 @@
-package NWUP.com
+package NWUP.com.Weltuhr
 
-import android.content.Context
-import android.nfc.Tag
+import NWUP.com.R
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.pick_timezone.*
 
 class PickTimeZone: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package NWUP.com;
+package NWUP.com.Weltuhr;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import NWUP.com.R;
+
 //Diese Datei ist mehr oder weniger ein Versuch in dem SCrollview anpassbare Elemente zu erstellen
 public class CustomListAdapter extends ArrayAdapter {
     //to reference the Activity
@@ -20,7 +23,7 @@ public class CustomListAdapter extends ArrayAdapter {
 
     public CustomListAdapter(Activity context, String[] nameArrayParam, String[] infoArrayParam){
 
-        super(context,R.layout.zeitzone_scrollview , nameArrayParam);
+        super(context, R.layout.zeitzone_scrollview , nameArrayParam);
         this.context=context;
         this.nameArray = nameArrayParam;
         this.infoArray = infoArrayParam;
@@ -41,5 +44,5 @@ public class CustomListAdapter extends ArrayAdapter {
 
         return rowView;
 
-    };
+    }
 }

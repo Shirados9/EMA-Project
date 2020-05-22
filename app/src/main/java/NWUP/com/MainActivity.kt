@@ -1,15 +1,13 @@
 package NWUP.com
 
+import NWUP.com.Alarm.AlarmFragment
+import NWUP.com.Stoppuhr.StoppuhrFragment
+import NWUP.com.Timer.TimerFragment
+import NWUP.com.Weltuhr.WeltuhrFragment
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Switch
-import android.widget.ToggleButton
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
