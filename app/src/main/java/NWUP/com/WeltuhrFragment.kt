@@ -21,8 +21,6 @@ import java.util.*
  */
 class WeltuhrFragment : Fragment() {
 
-
-
     fun setCurrentDate() {
         var calendar = Calendar.getInstance()
         var currentDate =  DateFormat.getDateInstance().format(calendar.getTime())

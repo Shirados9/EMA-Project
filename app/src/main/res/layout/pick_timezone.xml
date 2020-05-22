@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:text=""
         android:hint="@string/hint"
+        android:completionThreshold="0"
+        android:completionHint="Wähle eine Zeitzone aus"
         android:textColor="@color/colorAccent"
         android:textColorHint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"

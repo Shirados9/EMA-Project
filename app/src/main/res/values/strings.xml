@@ -22,9 +22,25 @@
         <item>IN Mumbai India IST UTC+5:30</item>
         <item>SG Singapore, Singapore +08 UTC+8</item>
         <item> CN Beijing, China CST UTC+8</item>
-        <item> CN China Time, China CST UTC+8</item>
         <item> JP Tokyo, Japan JST UTC+9</item>
         <item> AU Sydney, Australia AEST UTC+10</item>
         <item> NZ Auckland, New Zealand NZST UTC+12</item>
+    </string-array>
+    <string-array name="available_ids">
+        <item>PST8PDT</item>
+        <item>MST7MDT</item>
+        <item>CST6CDT</item>
+        <item>EST5EDT</item>
+        <item>UTC</item>
+        <item>Europe/London</item>
+        <item>Europe/Berlin</item>
+        <item>Europe/Moscow</item>
+        <item>Asia/Dubai</item>
+        <item>IST</item>
+        <item>Asia/Singapore</item>
+        <item>CST</item>
+        <item>Japan</item>
+        <item>Australia/Sydney</item>
+        <item>Pacific/Auckland</item>
     </string-array>
 </resources>

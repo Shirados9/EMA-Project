@@ -1,8 +1,11 @@
 package NWUP.com
 
+import android.content.Context
+import android.nfc.Tag
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
+import android.util.Log
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.pick_timezone.*
 
@@ -21,7 +24,12 @@ class PickTimeZone: AppCompatActivity() {
         autotextView.setOnClickListener {
             autotextView.showDropDown()
         }
+        autotextView.setOnItemClickListener { parent, view, position, id ->
+            val selectedItem = parent.getItemAtPosition(position).toString()
+            val selectedPosition = position
 
+            finish()
+        }
 
     }
 
