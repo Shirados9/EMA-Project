@@ -16,6 +16,9 @@ import java.util.*
 /**
  * A simple [Fragment] subclass.
  */
+
+//TODO: Variablen-Namen in XML einheitlicher machen
+
 class WeltuhrFragment : Fragment() {
 
     private fun setCurrentDate() {
