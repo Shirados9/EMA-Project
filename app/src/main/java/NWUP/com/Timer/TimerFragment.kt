@@ -2,16 +2,42 @@ package NWUP.com.Timer
 
 import NWUP.com.R
 import NWUP.com.Timer.util.PrefUtil
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import kotlinx.android.synthetic.main.content_timer.*
 import kotlinx.android.synthetic.main.fragment_timer.*
+import java.util.*
 
 class TimerFragment : Fragment() {
+
+    companion object {
+        fun setAlarm(context: Context, nowSeconds: Long, secondsRemaining: Long): Long {
+            val wakeUpTime = (nowSeconds + secondsRemaining) * 1000
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(context, TimerExpiredReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, wakeUpTime, pendingIntent)
+            PrefUtil.setAlarmSetTime(nowSeconds, context)
+            return wakeUpTime
+        }
+
+        fun removeAlarm(context: Context) {
+            val intent = Intent(context, TimerExpiredReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            alarmManager.cancel(pendingIntent)
+            PrefUtil.setAlarmSetTime(0, context)
+        }
+
+        val nowSeconds: Long
+            get() = Calendar.getInstance().timeInMillis / 1000
+    }
 
     enum class TimerState{
         Stopped, Paused, Running
@@ -55,6 +81,8 @@ class TimerFragment : Fragment() {
 
         initTimer()
 
+        context?.let { removeAlarm(it) }
+
         //TODO: remove background timer, hide notification
     }
 
@@ -63,7 +91,7 @@ class TimerFragment : Fragment() {
 
         if (timerState == TimerState.Running){
             timer.cancel()
-            //TODO: start background timer and show notification
+            val wakeUpTime = context?.let { setAlarm(it, nowSeconds, secondsRemaining) }
         }
         else if (timerState == TimerState.Paused){
             //TODO: show notification
@@ -91,8 +119,14 @@ class TimerFragment : Fragment() {
 
         //TODO: change secondsRemaining according to where the background timer stopped
 
+        val alarmSetTime = PrefUtil.getAlarmSetTime(requireContext())
+        if (alarmSetTime > 0)
+            secondsRemaining -= nowSeconds - alarmSetTime
+
+        if (secondsRemaining <= 0)
+            onTimerFinished()
         //resume where we left off
-        if (timerState == TimerState.Running)
+        else if (timerState == TimerState.Running)
             startTimer()
 
         updateButtons()
@@ -168,4 +202,19 @@ class TimerFragment : Fragment() {
             }
         }
     }
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        menuInflater.inflate(R.menu.menu_timer, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        return when (item.itemId) {
+//            R.id.action_settings -> true
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 }
