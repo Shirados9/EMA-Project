@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 
 class RecyclerAdapter(private val photos: ArrayList<ContactsContract.Contacts.Photo>) : RecyclerView.Adapter<RecyclerAdapter.PhotoHolder>()  {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.PhotoHolder {
         val inflatedView = parent.inflate(R.layout.recyclerview_item_row, false)
         return PhotoHolder(inflatedView)
@@ -38,5 +40,6 @@ class RecyclerAdapter(private val photos: ArrayList<ContactsContract.Contacts.Ph
         companion object{
             private val PHOTO_KEY = "PHOTO"
         }
+
     }
 }
