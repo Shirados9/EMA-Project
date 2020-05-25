@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_weltuhr.*
 import kotlinx.android.synthetic.main.fragment_weltuhr.view.*
 import java.text.DateFormat
@@ -17,9 +18,12 @@ import java.util.*
  * A simple [Fragment] subclass.
  */
 
-//TODO: Variablen-Namen in XML einheitlicher machen
+
 
 class WeltuhrFragment : Fragment() {
+
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var adapter: RecyclerAdapter
 
     private fun setCurrentDate() {
         val calendar = Calendar.getInstance()
@@ -27,20 +31,21 @@ class WeltuhrFragment : Fragment() {
 
         val tz: TimeZone = TimeZone.getDefault()
 
-        CurrentTimeZone.text = tz.getDisplayName()
-        CurrentDate.text = currentDate
+        currenttimezone.text = tz.displayName
+        currentdate.text= currentDate
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
 
 
+
     ): View? {
         // Inflate the layout for this fragment
         val binding = inflater.inflate(R.layout.fragment_weltuhr, container, false)
+        //linearLayoutManager = LinearLayoutManager(context)
+        //recycler.layoutManager = linearLayoutManager
 
-        //val boris = TextView("Blah")
-        //binding.ViewLayout.addView(boris)
 
         binding.gettopicktimezone.setOnClickListener {
             val intent = Intent(context, PickTimeZone::class.java)
@@ -56,8 +61,14 @@ class WeltuhrFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        linearLayoutManager = LinearLayoutManager(context)
+        recycler.layoutManager = linearLayoutManager
+        //adapter = RecyclerAdapter(photosList)
+        //recycler.adapter = adapter
         setCurrentDate()
     }
+
 
 
 }
