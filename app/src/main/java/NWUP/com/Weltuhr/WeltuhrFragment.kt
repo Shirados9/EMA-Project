@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_weltuhr.*
 import kotlinx.android.synthetic.main.fragment_weltuhr.view.*
 import java.text.DateFormat
@@ -21,14 +22,16 @@ import java.util.*
 
 class WeltuhrFragment : Fragment() {
 
+    private lateinit var linearLayoutManager: LinearLayoutManager
+
     private fun setCurrentDate() {
         val calendar = Calendar.getInstance()
         val currentDate =  DateFormat.getDateInstance().format(calendar.getTime())
 
         val tz: TimeZone = TimeZone.getDefault()
 
-        CurrentTimeZone.text = tz.getDisplayName()
-        CurrentDate.text = currentDate
+        currenttimezone.text = tz.displayName
+        currentdate.text= currentDate
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +50,9 @@ class WeltuhrFragment : Fragment() {
             startActivity((intent))
         }
 
+
+        linearLayoutManager = LinearLayoutManager(this.context)
+        recycler.layoutManager = linearLayoutManager
 
 
 
