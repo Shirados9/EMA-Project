@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_weltuhr.*
 import kotlinx.android.synthetic.main.fragment_weltuhr.view.*
 import java.text.DateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 /**
@@ -62,13 +63,17 @@ class WeltuhrFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        linearLayoutManager = LinearLayoutManager(context)
-        recycler.layoutManager = linearLayoutManager
         //adapter = RecyclerAdapter(photosList)
         //recycler.adapter = adapter
         setCurrentDate()
+
+        recycler_weltuhr.layoutManager = LinearLayoutManager(activity)
+        recycler_weltuhr.adapter = RecyclerAdapter(RecyclerItems)
+        recycler_weltuhr.setHasFixedSize(true)
     }
 
-
+companion object {
+    var RecyclerItems = ArrayList<RecyclerItem>()
+}
 
 }
