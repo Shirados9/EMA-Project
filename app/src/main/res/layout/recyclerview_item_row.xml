@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toTopOf="@+id/item_date"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Some timezone" />
+        tools:text="Some timezone"
+        android:textColor="@color/colorAccent" />
 
     <TextView
         android:id="@+id/item_date"
@@ -28,7 +29,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/item_time"
-        tools:text="Some date"/>
+        tools:text="Some date"
+        android:textColor="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/item_time"
@@ -36,8 +38,10 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="@+id/item_date"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        tools:text="Some time"/>
+        tools:text="Some time"
+        android:textColor="@color/colorAccent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

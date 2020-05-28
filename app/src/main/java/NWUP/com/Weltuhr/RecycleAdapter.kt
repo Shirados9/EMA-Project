@@ -33,9 +33,6 @@ class RecyclerAdapter(private val exampleList: List<RecyclerItem>): RecyclerView
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = exampleList[position]
 
-        holder.item_timezone.setTextColor(Color.WHITE)
-        holder.item_date.setTextColor(Color.WHITE)
-        holder.item_time.setTextColor(Color.WHITE)
 
         holder.item_timezone.text = currentItem.text1
         holder.item_date.text = currentItem.text2
