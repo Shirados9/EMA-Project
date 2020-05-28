@@ -1,6 +1,7 @@
 package NWUP.com.Weltuhr
 
 import NWUP.com.R
+import android.graphics.Color
 import android.provider.ContactsContract
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,8 +19,6 @@ class RecyclerAdapter(private val exampleList: List<RecyclerItem>): RecyclerView
         val item_timezone: TextView = itemView.item_timezone
         val item_date: TextView = itemView.item_date
         val item_time: TextView = itemView.item_time
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
@@ -33,6 +32,11 @@ class RecyclerAdapter(private val exampleList: List<RecyclerItem>): RecyclerView
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = exampleList[position]
+
+        holder.item_timezone.setTextColor(Color.WHITE)
+        holder.item_date.setTextColor(Color.WHITE)
+        holder.item_time.setTextColor(Color.WHITE)
+
         holder.item_timezone.text = currentItem.text1
         holder.item_date.text = currentItem.text2
         holder.item_time.text = currentItem.text3

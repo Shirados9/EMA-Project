@@ -15,7 +15,7 @@
         android:layout_width="377dp"
         android:layout_height="196dp"
         android:layout_marginTop="270dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toTopOf="@+id/gettopicktimezone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,15 +25,14 @@
         <LinearLayout
             android:id="@+id/linearlayout_Weltuhr"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_weltuhr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/recycler_weltuhr"
                 tools:listitem="@layout/recyclerview_item_row">
-
 
 
             </androidx.recyclerview.widget.RecyclerView>
