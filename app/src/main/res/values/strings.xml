@@ -26,7 +26,25 @@
         <item> AU Sydney, Australia AEST UTC+10</item>
         <item> NZ Auckland, New Zealand NZST UTC+12</item>
     </string-array>
-    <string-array name="available_ids">
+    <string-array name="zeitzone_als_stadt_states">
+        <item>California</item>
+        <item>Colorado</item>
+        <item>Missouri</item>
+        <item>New York</item>
+        <item>Rio de Janeiro</item>
+        <item>UTC - Universal Time</item>
+        <item>London</item>
+        <item>Berlin</item>
+        <item>Moscow</item>
+        <item>Dubai</item>
+        <item>Mumbai</item>
+        <item>Singapore</item>
+        <item>Beijing</item>
+        <item>Tokyo</item>
+        <item>Sydney</item>
+        <item>Auckland</item>
+    </string-array>
+    <string-array name="available_timezones">
         <item>PST8PDT</item>
         <item>MST7MDT</item>
         <item>CST6CDT</item>

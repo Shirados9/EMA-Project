@@ -5,44 +5,56 @@ import NWUP.com.Weltuhr.WeltuhrFragment.Companion.RecyclerItems
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_weltuhr.*
 import java.text.DateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class PickTimeZone: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pick_timezone)
 
+        // creates autotextview and access to resource: "zeitzonen" in app/res/values/strings
         val autotextView = findViewById<AutoCompleteTextView>(R.id.autoTextView)
         val zeitzonen = resources.getStringArray(R.array.zeitzonen)
 
+
+        // creates adapter with ressource zeitzonen
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,zeitzonen)
 
+
+        // sets autotextview together with adapter to show available timezones in dropdown menu
         autotextView.setAdapter(adapter)
 
+
+        // shows dropdown menu when clicked on
         autotextView.setOnClickListener {
             autotextView.showDropDown()
         }
+
+        // if item in dropdown menu gets clicked on, gets parameters to set in "Weltuhrfragment"
         autotextView.setOnItemClickListener { parent, view, position, id ->
+            // gets selected item from positios
             val selectedItem = parent.getItemAtPosition(position).toString()
-            val selectedtimezone = resources.getStringArray(R.array.available_ids)[position]
+
+
+            val selectedItem_as_city = resources.getStringArray(R.array.zeitzone_als_stadt_states)[position]
+
+            val selectedtimezone = resources.getStringArray(R.array.available_timezones)[position]
 
             val tz = TimeZone.getTimeZone(selectedtimezone)
             val c = Calendar.getInstance(tz)
 
             val currentDate =  DateFormat.getDateInstance().format(c.time)
-            val time =  String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
+            /*val time =  String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
                     String.format("%02d" , c.get(Calendar.MINUTE))+":"+
                     String.format("%02d" , c.get(Calendar.SECOND))+":"+
                     String.format("%03d" , c.get(Calendar.MILLISECOND));
-            //
+            */
 
 
+            RecyclerItems.add(RecyclerItem(selectedItem_as_city,currentDate,selectedtimezone))
 
-            RecyclerItems.add(RecyclerItem(selectedItem,currentDate,time))
+            //RecyclerItems.add(RecyclerItem(selectedItem,currentDate,selectedtimezone))
 
             finish()
         }

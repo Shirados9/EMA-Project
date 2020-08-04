@@ -24,14 +24,15 @@ import kotlin.collections.ArrayList
 class WeltuhrFragment : Fragment() {
 
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var adapter: RecyclerAdapter
+    private lateinit var aapter: RecyclerAdapter
 
     private fun setCurrentDate() {
+        // gets current time, date and timezone
         val calendar = Calendar.getInstance()
         val currentDate =  DateFormat.getDateInstance().format(calendar.getTime())
-
         val tz: TimeZone = TimeZone.getDefault()
 
+        // sets current date and timezone
         currenttimezone.text = tz.displayName
         currentdate.text= currentDate
     }
@@ -47,7 +48,7 @@ class WeltuhrFragment : Fragment() {
         //linearLayoutManager = LinearLayoutManager(context)
         //recycler.layoutManager = linearLayoutManager
 
-
+        // starts PickTimeZone
         binding.gettopicktimezone.setOnClickListener {
             val intent = Intent(context, PickTimeZone::class.java)
             startActivity((intent))
@@ -71,6 +72,8 @@ class WeltuhrFragment : Fragment() {
         recycler_weltuhr.adapter = RecyclerAdapter(RecyclerItems)
         recycler_weltuhr.setHasFixedSize(true)
     }
+
+
 
 companion object {
     var RecyclerItems = ArrayList<RecyclerItem>()

@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toTopOf="@+id/item_date"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Some timezone"
+        tools:text="Some City"
         android:textColor="@color/colorAccent" />
 
     <TextView
@@ -25,23 +25,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        app:layout_constraintBottom_toBottomOf="@+id/item_timezone"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/item_time"
-        tools:text="Some date"
-        android:textColor="@color/colorAccent"/>
+        tools:text="Some date" />
 
-    <TextView
+    <TextClock
         android:id="@+id/item_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        app:layout_constraintBottom_toBottomOf="@+id/item_date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        tools:text="Some time"
-        android:textColor="@color/colorAccent"/>
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Some time" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
