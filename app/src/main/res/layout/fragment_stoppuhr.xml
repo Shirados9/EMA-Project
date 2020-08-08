@@ -13,11 +13,22 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorAccent"
         android:textSize="60sp"
-        tools:text="00:00:00.0"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/stopwatch_recycler_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="00:00:00.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/stopwatch_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toTopOf="@id/stopwatchStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chronometer"
+        tools:listitem="@layout/stoppuhr_recycler_exampleitem" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/stopwatchStart"
@@ -28,21 +39,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer"
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_recycler_view"
         app:srcCompat="@drawable/ic_play_arrow" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/stopwatchPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:tint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorOrange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer"
-        app:srcCompat="@drawable/ic_pause"
-        android:visibility="invisible"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/stopwatchReset"
@@ -54,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.222"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer"
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_recycler_view"
         app:layout_constraintVertical_bias="0.501"
         app:srcCompat="@drawable/ic_replay"
         android:visibility="invisible"/>
@@ -70,9 +68,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.783"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer"
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_recycler_view"
         app:layout_constraintVertical_bias="0.501"
         app:srcCompat="@drawable/ic_share" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/stopwatchLap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="@color/colorPrimaryDark"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorOrange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.783"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stopwatch_recycler_view"
+        app:layout_constraintVertical_bias="0.501"
+        app:srcCompat="@drawable/ic_flag" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
