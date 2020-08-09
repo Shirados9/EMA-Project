@@ -32,7 +32,7 @@
                 android:id="@+id/recycler_weltuhr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/recyclerview_item_row">
+                tools:listitem="@layout/recyclerview_weltuhr">
 
 
             </androidx.recyclerview.widget.RecyclerView>

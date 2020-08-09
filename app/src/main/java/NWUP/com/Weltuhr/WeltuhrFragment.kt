@@ -61,13 +61,18 @@ class WeltuhrFragment : Fragment() {
         return binding
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
+
     override fun onStart() {
         super.onStart()
 
         //adapter = RecyclerAdapter(photosList)
         //recycler.adapter = adapter
         setCurrentDate()
-
         recycler_weltuhr.layoutManager = LinearLayoutManager(activity)
         recycler_weltuhr.adapter = RecyclerAdapter(RecyclerItems)
         recycler_weltuhr.setHasFixedSize(true)
@@ -75,8 +80,9 @@ class WeltuhrFragment : Fragment() {
 
 
 
-companion object {
-    var RecyclerItems = ArrayList<RecyclerItem>()
-}
+
+    companion object {
+        var RecyclerItems = ArrayList<RecyclerItem>()
+    }
 
 }

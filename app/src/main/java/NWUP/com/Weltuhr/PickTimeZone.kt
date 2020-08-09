@@ -33,7 +33,7 @@ class PickTimeZone: AppCompatActivity() {
 
         // if item in dropdown menu gets clicked on, gets parameters to set in "Weltuhrfragment"
         autotextView.setOnItemClickListener { parent, view, position, id ->
-            // gets selected item from positios
+            // gets selected item from position
             val selectedItem = parent.getItemAtPosition(position).toString()
 
 
@@ -45,11 +45,6 @@ class PickTimeZone: AppCompatActivity() {
             val c = Calendar.getInstance(tz)
 
             val currentDate =  DateFormat.getDateInstance().format(c.time)
-            /*val time =  String.format("%02d" , c.get(Calendar.HOUR_OF_DAY))+":"+
-                    String.format("%02d" , c.get(Calendar.MINUTE))+":"+
-                    String.format("%02d" , c.get(Calendar.SECOND))+":"+
-                    String.format("%03d" , c.get(Calendar.MILLISECOND));
-            */
 
 
             RecyclerItems.add(RecyclerItem(selectedItem_as_city,currentDate,selectedtimezone))
