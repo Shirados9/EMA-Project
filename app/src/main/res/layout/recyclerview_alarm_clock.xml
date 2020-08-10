@@ -13,10 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Uhrzeit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/holo_orange_dark"/>
 
     <Switch
         android:id="@+id/switch_alarm"

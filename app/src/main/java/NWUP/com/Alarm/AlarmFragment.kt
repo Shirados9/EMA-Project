@@ -26,14 +26,25 @@ class AlarmFragment : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: AlarmRecycleAdapter
 
+    companion object {
+        var RecyclerItems_Alarm = ArrayList<AlarmRecycleItem>()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binder =  inflater.inflate(R.layout.fragment_alarm, container, false)
+        val binder = inflater.inflate(R.layout.fragment_alarm, container, false)
 
-        binder.add_alarm.setOnClickListener() {
+
+        return binder;
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        add_alarm.setOnClickListener() {
 
             val cal = Calendar.getInstance()
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
@@ -43,22 +54,19 @@ class AlarmFragment : Fragment() {
                 //val Uhrzeit= SimpleDateFormat("HH:mm").format(cal.time)
                 //RecyclerItems_Alarm.add(AlarmRecycleItem(Uhrzeit))
             }
-            TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+            TimePickerDialog(
+                context,
+                timeSetListener,
+                cal.get(Calendar.HOUR_OF_DAY),
+                cal.get(Calendar.MINUTE),
+                true
+            ).show()
             RecyclerItems_Alarm.add(AlarmRecycleItem(SimpleDateFormat("HH:mm").format(cal.time)))
+            recycler_alarm.adapter?.notifyItemInserted(RecyclerItems_Alarm.size -1)
         }
-
-        return binder;
     }
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-
-
-
-    }
     override fun onStart() {
         super.onStart()
         recycler_alarm.layoutManager = LinearLayoutManager(activity)
@@ -67,8 +75,6 @@ class AlarmFragment : Fragment() {
 
     }
 
-    companion object {
-        var RecyclerItems_Alarm = ArrayList<AlarmRecycleItem>()
-    }
+
 }
 
