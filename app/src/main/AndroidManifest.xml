@@ -28,6 +28,8 @@
             android:enabled="true"
             android:exported="false">
         </receiver>
+
+        <receiver android:name=".Alarm.AlertReceiver"/>
     </application>
 
 </manifest>

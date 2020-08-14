@@ -1,19 +1,23 @@
 package NWUP.com.Alarm
 
 import NWUP.com.R
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Context.ALARM_SERVICE
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.LinearLayout
+import android.widget.Button
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_alarm.*
-import kotlinx.android.synthetic.main.fragment_alarm.view.*
-import kotlinx.android.synthetic.main.fragment_alarm.view.recycler_alarm
-import kotlinx.android.synthetic.main.recyclerview_alarm_clock.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,8 +27,12 @@ import kotlin.collections.ArrayList
  * A simple [Fragment] subclass.
  */
 class AlarmFragment : Fragment() {
-    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var linearLayoutManager: RecyclerView.LayoutManager
     private lateinit var adapter: AlarmRecycleAdapter
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var alarmManager: AlarmManager
+
+    private lateinit var Alarm: Button
 
     companion object {
         var RecyclerItems_Alarm = ArrayList<AlarmRecycleItem>()
@@ -50,29 +58,110 @@ class AlarmFragment : Fragment() {
             val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
-                //textView.text = SimpleDateFormat("HH:mm").format(cal.time)
-                //val Uhrzeit= SimpleDateFormat("HH:mm").format(cal.time)
-                //RecyclerItems_Alarm.add(AlarmRecycleItem(Uhrzeit))
+
+                RecyclerItems_Alarm.add(AlarmRecycleItem(SimpleDateFormat("HH:mm").format(cal.time)))
+                adapter.notifyItemInserted(RecyclerItems_Alarm.size-1)
             }
-            TimePickerDialog(
-                context,
-                timeSetListener,
-                cal.get(Calendar.HOUR_OF_DAY),
-                cal.get(Calendar.MINUTE),
-                true
-            ).show()
-            RecyclerItems_Alarm.add(AlarmRecycleItem(SimpleDateFormat("HH:mm").format(cal.time)))
-            recycler_alarm.adapter?.notifyItemInserted(RecyclerItems_Alarm.size -1)
+            TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
         }
+
+        //buttonRemove.setOnClickListener() {}
+
+
+
     }
+
+    public fun removeItem(position: Int) {
+
+    }
+
 
 
     override fun onStart() {
         super.onStart()
+        buildRecyclerView()
+
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+    //hourOfDay:Int, minute:Int
+    fun startAlarm() {
+        var c : Calendar = Calendar.getInstance()
+        /*c.set(Calendar.HOUR_OF_DAY, hourOfDay)
+        c.set(Calendar.MINUTE, minute)
+        c.set(Calendar.SECOND, 0)*/
+
+        alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlertReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+        val time = Calendar.getInstance()
+        time.timeInMillis = System.currentTimeMillis()
+        time.add(Calendar.SECOND, 30)
+        alarmManager.set(AlarmManager.RTC_WAKEUP, time.timeInMillis, pendingIntent)
+
+
+
+
+
+    }
+
+    fun cancelAlarm() {
+
+    }
+
+
+    private fun buildRecyclerView() {
+        adapter = AlarmRecycleAdapter(RecyclerItems_Alarm)
+
+
+
+
         recycler_alarm.layoutManager = LinearLayoutManager(activity)
-        recycler_alarm.adapter = AlarmRecycleAdapter(RecyclerItems_Alarm)
+        recycler_alarm.adapter = adapter
         recycler_alarm.setHasFixedSize(true)
 
+
+
+
+
+
+
+
+        adapter.setOnItemClickListener(object :
+            AlarmRecycleAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                recycler_alarm.get(position)
+            }
+
+            override fun onDeleteClick(position: Int) {
+                removeItem(position)
+            }
+
+            override fun changeTimeClick(position: Int) {
+                val cal = Calendar.getInstance()
+                val timeSetListener = TimePickerDialog.OnTimeSetListener() { timePicker, hour, minute ->
+                    cal.set(Calendar.HOUR_OF_DAY, hour)
+                    cal.set(Calendar.MINUTE, minute)
+                    val text = SimpleDateFormat("HH:mm").format(cal.time)
+                    RecyclerItems_Alarm.get(position).changeUhrzeit(text)
+                    recycler_alarm.adapter?.notifyItemChanged(position)
+                }
+                TimePickerDialog(
+                    context,
+                    timeSetListener,
+                    cal.get(Calendar.HOUR_OF_DAY),
+                    cal.get(Calendar.MINUTE),
+                    true
+                ).show()
+            }
+
+            override fun startAlarm(position: Int) {
+                startAlarm()
+            }
+        })
     }
 
 

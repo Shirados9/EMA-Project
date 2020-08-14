@@ -32,14 +32,14 @@
 
     <TextClock
         android:id="@+id/item_time"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Some time" />
+        app:layout_constraintVertical_bias="0.486" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
