@@ -3,11 +3,15 @@ package NWUP.com.Alarm
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
+import android.media.RingtoneManager
+import android.net.Uri
+import androidx.core.app.NotificationCompat
+
 
 class AlertReceiver :BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        Toast.makeText(context, "Alarm went off", Toast.LENGTH_SHORT).show()
-
+        val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val r = RingtoneManager.getRingtone(context, notification)
+        r.play()
     }
 }

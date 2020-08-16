@@ -5,7 +5,6 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.app.TimePickerDialog
 import android.content.Context
-import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -88,27 +87,23 @@ class AlarmFragment : Fragment() {
 
     }
     //hourOfDay:Int, minute:Int
-    fun startAlarm() {
-        var c : Calendar = Calendar.getInstance()
-        /*c.set(Calendar.HOUR_OF_DAY, hourOfDay)
-        c.set(Calendar.MINUTE, minute)
-        c.set(Calendar.SECOND, 0)*/
+    fun startAlarm_frag(c: Calendar, position: Int) {
 
         alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlertReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
-        val time = Calendar.getInstance()
-        time.timeInMillis = System.currentTimeMillis()
-        time.add(Calendar.SECOND, 30)
-        alarmManager.set(AlarmManager.RTC_WAKEUP, time.timeInMillis, pendingIntent)
+        val pendingIntent = PendingIntent.getBroadcast(context, position, intent, 0)
 
-
-
-
-
+        if(c.before(Calendar.getInstance())) {
+            c.add(Calendar.DATE, 1)
+        }
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
     }
 
-    fun cancelAlarm() {
+    fun cancelAlarm_frag(position: Int) {
+        alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlertReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, position, intent, 0)
+        alarmManager!!.cancel(pendingIntent)
 
     }
 
@@ -159,7 +154,11 @@ class AlarmFragment : Fragment() {
             }
 
             override fun startAlarm(position: Int) {
-                startAlarm()
+                startAlarm_frag(RecyclerItems_Alarm.get(position).getSetTime(), position)
+            }
+
+            override fun cancelAlarm(position: Int) {
+                cancelAlarm_frag(position)
             }
         })
     }
