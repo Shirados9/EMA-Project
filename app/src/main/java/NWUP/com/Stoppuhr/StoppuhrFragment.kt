@@ -51,6 +51,8 @@ class StoppuhrFragment : Fragment() {
         stopwatchStart.setOnClickListener { view ->
             isRunning = if (isRunning) {
                 chronometer.stop()
+                stopwatchShare.show()
+                stopwatchLap.hide()
                 stopwatchStart.setImageResource(R.drawable.ic_play_arrow)
                 false
             } else {
