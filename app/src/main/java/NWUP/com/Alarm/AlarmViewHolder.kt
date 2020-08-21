@@ -1,0 +1,37 @@
+package NWUP.com.Alarm
+
+import android.R
+import android.view.View
+import android.widget.ImageView
+import android.widget.Switch
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_alarm.view.*
+
+
+class AlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val alarmTime: TextView = itemView.item_alarm_time
+    private val alarmRecurring: ImageView = itemView.item_alarm_recurring
+    private val alarmRecurringDays: TextView = itemView.item_alarm_recurringDays
+    private val alarmTitle: TextView = itemView.item_alarm_title
+    private val alarmStarted: Switch = itemView.item_alarm_started
+    fun bind(alarm: Alarm, listener: OnToggleAlarmListener) {
+        val alarmText = String.format("%02d:%02d", alarm.hour, alarm.minute)
+        alarmTime.text = alarmText
+        alarmStarted.isChecked = alarm.started
+        if (alarm.recurring) {
+            //alarmRecurring.setImageResource(R.drawable.ic_repeat_black_24dp)
+            alarmRecurringDays.text = alarm.getRecurringDaysText().toString()
+        } else {
+            //alarmRecurring.setImageResource(R.drawable.ic_looks_one_black_24dp)
+            alarmRecurringDays.text = "Once Off"
+        }
+        if (alarm.title.isNotEmpty()) {
+            alarmTitle.text = alarm.title
+        } else {
+            alarmTitle.text = "My alarm"
+        }
+        alarmStarted.setOnCheckedChangeListener { buttonView, isChecked -> listener.onToggle(alarm) }
+    }
+
+}

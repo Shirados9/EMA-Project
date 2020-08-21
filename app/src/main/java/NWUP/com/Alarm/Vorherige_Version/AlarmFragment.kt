@@ -1,5 +1,6 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.Vorherige_Version
 
+import NWUP.com.Alarm.AlertReceiver
 import NWUP.com.R
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -11,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,7 +58,11 @@ class AlarmFragment : Fragment() {
                 cal.set(Calendar.HOUR_OF_DAY, hour)
                 cal.set(Calendar.MINUTE, minute)
 
-                RecyclerItems_Alarm.add(AlarmRecycleItem(SimpleDateFormat("HH:mm").format(cal.time)))
+                RecyclerItems_Alarm.add(
+                    AlarmRecycleItem(
+                        SimpleDateFormat("HH:mm").format(cal.time)
+                    )
+                )
                 adapter.notifyItemInserted(RecyclerItems_Alarm.size-1)
             }
             TimePickerDialog(context, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
@@ -97,6 +101,10 @@ class AlarmFragment : Fragment() {
             c.add(Calendar.DATE, 1)
         }
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.timeInMillis, pendingIntent)
+
+
+
+
     }
 
     fun cancelAlarm_frag(position: Int) {
@@ -109,7 +117,10 @@ class AlarmFragment : Fragment() {
 
 
     private fun buildRecyclerView() {
-        adapter = AlarmRecycleAdapter(RecyclerItems_Alarm)
+        adapter =
+            AlarmRecycleAdapter(
+                RecyclerItems_Alarm
+            )
 
 
 

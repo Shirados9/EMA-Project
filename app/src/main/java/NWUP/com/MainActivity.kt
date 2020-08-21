@@ -1,6 +1,6 @@
 package NWUP.com
 
-import NWUP.com.Alarm.AlarmFragment
+import NWUP.com.Alarm.Vorherige_Version.AlarmFragment
 import NWUP.com.Stoppuhr.StoppuhrFragment
 import NWUP.com.Timer.TimerFragment
 import NWUP.com.Weltuhr.WeltuhrFragment

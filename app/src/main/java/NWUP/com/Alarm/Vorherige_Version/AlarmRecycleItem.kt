@@ -1,4 +1,4 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.Vorherige_Version
 
 import java.util.*
 
@@ -28,5 +28,4 @@ class AlarmRecycleItem(var Uhrzeit_Alarm: String) {
 
 
     }
-
 }
