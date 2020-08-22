@@ -1,7 +1,8 @@
 @file:Suppress("AndroidUnresolvedRoomSqlReference")
 
-package NWUP.com.Alarm
+package NWUP.com.Alarm.data
 
+import NWUP.com.Alarm.data.Alarm
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert

@@ -1,8 +1,9 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.service
 
-import NWUP.com.Alarm.AlarmApplication.Companion.CHANNEL_ID
-import NWUP.com.Alarm.AlertReceiver.Companion.TITLE
-import android.R
+import NWUP.com.Alarm.application.AlarmApplication.Companion.CHANNEL_ID
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.TITLE
+import NWUP.com.Alarm.activites.AlarmRingActivity
+import NWUP.com.R
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
@@ -19,8 +20,8 @@ import java.lang.String
 
 class AlarmService: Service() {
 
-    var mediaPlayer: MediaPlayer? = null
-    var vibrator: Vibrator? = null
+    lateinit var mediaPlayer: MediaPlayer
+    lateinit var vibrator: Vibrator
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -29,14 +30,10 @@ class AlarmService: Service() {
     override fun onCreate() {
         super.onCreate()
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.alarm)
+        mediaPlayer.isLooping = true
 
-        val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val r = RingtoneManager.getRingtone(this, notification)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            r.isLooping = true
-        }
-
-        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
+        vibrator = (getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?)!!
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -50,16 +47,16 @@ class AlarmService: Service() {
             NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle(alarmTitle)
                 .setContentText("Ring Ring .. Ring Ring")
-                .setSmallIcon(R.drawable.btn_radio)
+                .setSmallIcon(R.drawable.ic_replay)
                 .setContentIntent(pendingIntent)
                 .build()
 
 
-        mediaPlayer?.start()
-        mediaPlayer!!.start()
+        mediaPlayer.start()
+        mediaPlayer.start()
 
         val pattern = longArrayOf(0, 100, 1000)
-        vibrator!!.vibrate(pattern, 0)
+        vibrator.vibrate(pattern, 0)
 
         startForeground(1, notification)
 
@@ -71,7 +68,7 @@ class AlarmService: Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mediaPlayer!!.stop()
-        vibrator!!.cancel()
+        mediaPlayer.stop()
+        vibrator.cancel()
     }
 }

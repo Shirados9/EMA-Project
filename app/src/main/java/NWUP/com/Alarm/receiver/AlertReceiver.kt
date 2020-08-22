@@ -1,5 +1,6 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.receiver
 
+import NWUP.com.Alarm.service.AlarmService
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent

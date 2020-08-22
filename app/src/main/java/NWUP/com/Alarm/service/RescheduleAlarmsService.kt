@@ -1,5 +1,7 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.service
 
+import NWUP.com.Alarm.data.Alarm
+import NWUP.com.Alarm.data.AlarmRepository
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder

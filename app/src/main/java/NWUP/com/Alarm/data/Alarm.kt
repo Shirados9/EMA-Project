@@ -1,25 +1,29 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.data
 
-import NWUP.com.Alarm.AlertReceiver.Companion.FRIDAY
-import NWUP.com.Alarm.AlertReceiver.Companion.MONDAY
-import NWUP.com.Alarm.AlertReceiver.Companion.RECURRING
-import NWUP.com.Alarm.AlertReceiver.Companion.SATURDAY
-import NWUP.com.Alarm.AlertReceiver.Companion.SUNDAY
-import NWUP.com.Alarm.AlertReceiver.Companion.THURSDAY
-import NWUP.com.Alarm.AlertReceiver.Companion.TITLE
-import NWUP.com.Alarm.AlertReceiver.Companion.TUESDAY
-import NWUP.com.Alarm.AlertReceiver.Companion.WEDNESDAY
+import NWUP.com.Alarm.receiver.AlertReceiver
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.FRIDAY
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.MONDAY
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.RECURRING
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.SATURDAY
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.SUNDAY
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.THURSDAY
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.TITLE
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.TUESDAY
+import NWUP.com.Alarm.receiver.AlertReceiver.Companion.WEDNESDAY
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
-
+@Entity(tableName = "alarm_table")
 class Alarm(
-    private var alarmId:Int,
+    @PrimaryKey
+    var alarmId:Int,
     var hour:Int,
     var minute:Int,
     var title:String,
@@ -66,14 +70,14 @@ class Alarm(
         if (!recurring) {
             var toastText: String? = null
             try {
-                toastText = String.format("Einmaliger Alarm erstellt für %s um %02d:%02d", calendar.get(Calendar.DAY_OF_WEEK), hour, minute, alarmId)
+                toastText = String.format("Einmaliger Alarm %s erstellt für %s um %02d:%02d", title, calendar.get(Calendar.DAY_OF_WEEK), hour, minute, alarmId)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
             Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmPendingIntent)
         } else {
-            val toastText = String.format("Wiederholender Alarm erstellt für %s um %02d:%02d", getRecurringDaysText(), hour, minute, alarmId)
+            val toastText = String.format("Wiederholender Alarm %s erstellt für %s um %02d:%02d", title, getRecurringDaysText(), hour, minute, alarmId)
             Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
             val RUN_DAILY = 24 * 60 * 60 * 1000.toLong()
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, RUN_DAILY, alarmPendingIntent)

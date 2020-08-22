@@ -1,5 +1,7 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.activites
 
+import NWUP.com.Alarm.data.Alarm
+import NWUP.com.Alarm.service.AlarmService
 import NWUP.com.R
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator

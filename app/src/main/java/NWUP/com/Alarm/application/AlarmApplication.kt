@@ -1,4 +1,4 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.application
 
 import android.app.Application
 import android.app.NotificationChannel

@@ -1,6 +1,6 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.alarmsList
 
-import android.R
+import NWUP.com.Alarm.data.Alarm
 import android.view.View
 import android.widget.ImageView
 import android.widget.Switch

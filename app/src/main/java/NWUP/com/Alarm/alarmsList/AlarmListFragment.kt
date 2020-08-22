@@ -1,5 +1,6 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.alarmsList
 
+import NWUP.com.Alarm.data.Alarm
 import NWUP.com.R
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class AlarmsListFragment : Fragment(), OnToggleAlarmListener{
+class AlarmsListFragment : Fragment(),
+    OnToggleAlarmListener {
     private lateinit var alarmRecyclerViewAdapter: AlarmRecyclerViewAdapter
     private lateinit var alarmsListViewModel: AlarmsListViewModel
     private lateinit var alarmsRecyclerView: RecyclerView
@@ -24,7 +26,8 @@ class AlarmsListFragment : Fragment(), OnToggleAlarmListener{
         super.onCreate(savedInstanceState)
 
 
-        alarmRecyclerViewAdapter = AlarmRecyclerViewAdapter(this)
+        alarmRecyclerViewAdapter =
+            AlarmRecyclerViewAdapter(this)
         alarmsListViewModel = ViewModelProvider(this).get(
             AlarmsListViewModel::class.java
         )
@@ -48,10 +51,8 @@ class AlarmsListFragment : Fragment(), OnToggleAlarmListener{
         alarmsRecyclerView.adapter = alarmRecyclerViewAdapter
         addAlarm = view.findViewById(R.id.fragment_listalarms_addAlarm)
         addAlarm.setOnClickListener{
-            fun onClick(v: View?) {
-                Navigation.findNavController(v!!)
+                Navigation.findNavController(it)
                     .navigate(R.id.action_alarmsListFragment_to_createAlarmFragment)
-            }
         }
         return view
     }

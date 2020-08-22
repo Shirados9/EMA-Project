@@ -1,4 +1,4 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.data
 
 import android.content.Context
 import androidx.room.Database

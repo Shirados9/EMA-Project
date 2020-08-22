@@ -1,6 +1,6 @@
 package NWUP.com.Alarm.Vorherige_Version
 
-import NWUP.com.Alarm.AlertReceiver
+import NWUP.com.Alarm.receiver.AlertReceiver
 import NWUP.com.R
 import android.app.AlarmManager
 import android.app.PendingIntent

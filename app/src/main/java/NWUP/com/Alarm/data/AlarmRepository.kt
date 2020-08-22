@@ -1,5 +1,8 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.data
 
+import NWUP.com.Alarm.data.Alarm
+import NWUP.com.Alarm.data.AlarmDao
+import NWUP.com.Alarm.data.AlarmDatabase
 import android.app.Application
 import androidx.lifecycle.LiveData
 

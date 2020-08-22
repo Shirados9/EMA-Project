@@ -1,5 +1,6 @@
-package NWUP.com.Alarm
+package NWUP.com.Alarm.alarmsList
 
+import NWUP.com.Alarm.data.Alarm
 import NWUP.com.R
 import android.view.LayoutInflater
 import android.view.View

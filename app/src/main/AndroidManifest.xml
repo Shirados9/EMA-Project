@@ -23,16 +23,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".Weltuhr.PickTimeZone" />
-        <activity android:name=".Alarm.AlarmRingActivity" />
+        <activity android:name=".Alarm.activites.AlarmRingActivity" />
         <receiver
             android:name=".Timer.TimerExpiredReceiver"
             android:enabled="true"
             android:exported="false">
         </receiver>
 
-        <service android:name=".Alarm.AlarmService" />
-        <service android:name=".Alarm.RescheduleAlarmsService" />
-        <receiver android:name=".Alarm.AlertReceiver"/>
+        <service android:name=".Alarm.service.AlarmService" />
+        <service android:name=".Alarm.service.RescheduleAlarmsService" />
+        <receiver android:name=".Alarm.receiver.AlertReceiver"/>
     </application>
 
 </manifest>
