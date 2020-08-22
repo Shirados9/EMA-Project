@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_create_alarm.*
 import java.util.*
 
@@ -51,7 +52,7 @@ class CreateAlarmFragment : Fragment() {
         scheduleAlarm.setOnClickListener {
             fun onClick(v: View?) {
                 scheduleAlarm()
-                Navigation.findNavController(v)
+                Navigation.findNavController(v!!)
                     .navigate(R.id.action_createAlarmFragment_to_alarmsListFragment)
             }
         }

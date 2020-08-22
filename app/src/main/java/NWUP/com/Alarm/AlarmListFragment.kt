@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class AlarmsListFragment : Fragment(){
+class AlarmsListFragment : Fragment(), OnToggleAlarmListener{
     private lateinit var alarmRecyclerViewAdapter: AlarmRecyclerViewAdapter
     private lateinit var alarmsListViewModel: AlarmsListViewModel
     private lateinit var alarmsRecyclerView: RecyclerView
@@ -23,18 +24,17 @@ class AlarmsListFragment : Fragment(){
         super.onCreate(savedInstanceState)
 
 
-        alarmRecyclerViewAdapter = AlarmRecyclerViewAdapter()
-        alarmsListViewModel = ViewModelProviders.of(this).get(
+        alarmRecyclerViewAdapter = AlarmRecyclerViewAdapter(this)
+        alarmsListViewModel = ViewModelProvider(this).get(
             AlarmsListViewModel::class.java
         )
         alarmsListViewModel.alarmsLiveData
-            .observe(this, object : Observer<in List<Alarm>!> {
-                fun onChanged(alarms: List<Alarm?>?) {
+            .observe(this,
+                Observer<List<Alarm>> { alarms ->
                     if (alarms != null) {
                         alarmRecyclerViewAdapter.setAlarms(alarms as List<Alarm>)
                     }
-                }
-            })
+                })
     }
 
     override fun onCreateView(
@@ -49,20 +49,22 @@ class AlarmsListFragment : Fragment(){
         addAlarm = view.findViewById(R.id.fragment_listalarms_addAlarm)
         addAlarm.setOnClickListener{
             fun onClick(v: View?) {
-                Navigation.findNavController(v)
+                Navigation.findNavController(v!!)
                     .navigate(R.id.action_alarmsListFragment_to_createAlarmFragment)
             }
         }
         return view
     }
 
-    fun onToggle(alarm: Alarm) {
-        if (alarm.started) {
-            context?.let { alarm.cancelAlarm(it) }
-            alarmsListViewModel.update(alarm)
-        } else {
-            context?.let { alarm.schedule(it) }
-            alarmsListViewModel.update(alarm)
+    override fun onToggle(alarm: Alarm?) {
+        if (alarm != null) {
+            if (alarm.started) {
+                context?.let { alarm.cancelAlarm(it) }
+                alarmsListViewModel.update(alarm)
+            } else {
+                context?.let { alarm.schedule(it) }
+                alarmsListViewModel.update(alarm)
+            }
         }
     }
 }

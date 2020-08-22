@@ -4,7 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import androidx.lifecycle.LifecycleService
-import java.util.*
+import androidx.lifecycle.Observer
 
 
 class RescheduleAlarmsService : LifecycleService() {
@@ -17,12 +17,10 @@ class RescheduleAlarmsService : LifecycleService() {
         val alarmRepository = AlarmRepository(application)
         alarmRepository.alarmsLiveData.observe(
             this,
-            object : Observer<List<Alarm?>?>() {
-                fun onChanged(alarms: List<Alarm>) {
-                    for (a in alarms) {
-                        if (a.started) {
-                            a.schedule(applicationContext)
-                        }
+            Observer<List<Alarm>> { alarms ->
+                for (a in alarms) {
+                    if (a.started) {
+                        a.schedule(applicationContext)
                     }
                 }
             })
