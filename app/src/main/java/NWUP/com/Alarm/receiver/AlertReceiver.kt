@@ -25,30 +25,21 @@ class AlertReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
-        if (intent != null) {
-            if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
-                val toastText = String.format("Alarm Reboot")
-                Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
-                startRescheduleAlarmsService(context)
-            } else {
-                val toastText = String.format("Alarm Received")
-                Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
-
-                val bundle = intent.extras
-                if (bundle!!.getBoolean(RECURRING)) {
+        if (Intent.ACTION_BOOT_COMPLETED == intent!!.action) {
+            val toastText = String.format("Alarm Reboot")
+            Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
+            startRescheduleAlarmsService(context)
+        } else {
+            val toastText = String.format("Alarm Received")
+            Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
+            val bundle = intent.extras
+            if (bundle!!.getBoolean(RECURRING)) {
+                if(alarmIsToday(intent)) {
                     startAlarmService(context, intent)
-                } else {
-                    if (alarmIsToday(intent)) {
-
-                            if (bundle.getBoolean(RECURRING)) {
-                                startAlarmService(context, intent)
-                            } else {
-                                if (alarmIsToday(intent)) {
-                                    startAlarmService(context, intent)
-                                }
-                            }
-                    }
                 }
+            }
+            else {
+                startAlarmService(context, intent)
             }
         }
     }
