@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.*
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.content_timer.*
+import kotlinx.android.synthetic.main.fragment_timer_timer_content.*
 import kotlinx.android.synthetic.main.fragment_timer.*
 import java.util.*
 

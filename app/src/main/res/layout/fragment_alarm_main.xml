@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Alarm.activites.listalarm_main">
+    tools:context=".Alarm.activities.listalarm_main">
 
 
     <fragment
@@ -15,6 +15,5 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph"
         />
-
 
 </FrameLayout>

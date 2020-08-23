@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_weltuhr.*
-import kotlinx.android.synthetic.main.fragment_weltuhr.view.*
+import kotlinx.android.synthetic.main.fragment_weltuhr_main.*
+import kotlinx.android.synthetic.main.fragment_weltuhr_main.view.*
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -44,7 +44,7 @@ class WeltuhrFragment : Fragment() {
 
     ): View? {
         // Inflate the layout for this fragment
-        val binding = inflater.inflate(R.layout.fragment_weltuhr, container, false)
+        val binding = inflater.inflate(R.layout.fragment_weltuhr_main, container, false)
         //linearLayoutManager = LinearLayoutManager(context)
         //recycler.layoutManager = linearLayoutManager
 

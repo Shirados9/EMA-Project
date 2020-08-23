@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/content_timer" />
+        layout="@layout/fragment_timer_timer_content" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabStop"

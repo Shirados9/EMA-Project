@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chronometer"
-        tools:listitem="@layout/stoppuhr_recycler_exampleitem" />
+        tools:listitem="@layout/fragment_stoppuhr_recycler_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/stopwatchStart"

@@ -9,7 +9,7 @@
         android:id="@+id/alarmsListFragment"
         android:name="NWUP.com.Alarm.alarmsList.AlarmsListFragment"
         android:label="fragment_allalarms"
-        tools:layout="@layout/fragment_listalarms" >
+        tools:layout="@layout/fragment_alarm_list_alarms" >
         <action
             android:id="@+id/action_alarmsListFragment_to_createAlarmFragment"
             app:destination="@id/createAlarmFragment" />

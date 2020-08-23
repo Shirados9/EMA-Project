@@ -2,16 +2,13 @@ package NWUP.com.Alarm.service
 
 import NWUP.com.Alarm.application.AlarmApplication.Companion.CHANNEL_ID
 import NWUP.com.Alarm.receiver.AlertReceiver.Companion.TITLE
-import NWUP.com.Alarm.activites.AlarmRingActivity
+import NWUP.com.Alarm.activities.AlarmRingActivity
 import NWUP.com.R
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
-import android.media.RingtoneManager
-import android.net.Uri
-import android.os.Build
 import android.os.IBinder
 import android.os.Vibrator
 import androidx.core.app.NotificationCompat

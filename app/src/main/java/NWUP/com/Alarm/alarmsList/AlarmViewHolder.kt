@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_alarm.view.*
+import kotlinx.android.synthetic.main.fragment_alarm_item.view.*
 
 
 class AlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

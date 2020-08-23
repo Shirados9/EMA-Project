@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextClock
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.recyclerview_weltuhr.view.*
+import kotlinx.android.synthetic.main.fragment_weltuhr_recyclerview.view.*
 
 class RecyclerAdapter(private val exampleList: List<RecyclerItem>): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()  {
     private var data: ArrayList<String>? = null
@@ -20,7 +20,7 @@ class RecyclerAdapter(private val exampleList: List<RecyclerItem>): RecyclerView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
-        val createview = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_weltuhr,parent,false)
+        val createview = LayoutInflater.from(parent.context).inflate(R.layout.fragment_weltuhr_recyclerview,parent,false)
         return ViewHolder(createview)
     }
 

@@ -11,7 +11,7 @@ import java.util.*
 class PickTimeZone: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.pick_timezone)
+        setContentView(R.layout.fragment_weltuhr_timezonepicker)
 
         // creates autotextview and access to resource: "zeitzonen" in app/res/values/strings
         val autotextView = findViewById<AutoCompleteTextView>(R.id.autoTextView)

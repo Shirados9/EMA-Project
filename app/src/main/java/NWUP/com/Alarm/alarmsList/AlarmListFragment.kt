@@ -45,7 +45,7 @@ class AlarmsListFragment : Fragment(),
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_listalarms, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_alarm_list_alarms, container, false)
         alarmsRecyclerView = view.findViewById(R.id.fragment_listalarms_recylerView)
         alarmsRecyclerView.layoutManager = LinearLayoutManager(context)
         alarmsRecyclerView.adapter = alarmRecyclerViewAdapter

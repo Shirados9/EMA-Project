@@ -1,4 +1,4 @@
-package NWUP.com.Alarm.activites
+package NWUP.com.Alarm.activities
 
 import NWUP.com.Alarm.data.Alarm
 import NWUP.com.Alarm.service.AlarmService
@@ -10,7 +10,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.alarm_ringactivity.*
+import kotlinx.android.synthetic.main.fragment_alarm_ringactivity.*
 import java.util.*
 
 
@@ -22,7 +22,7 @@ class AlarmRingActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.alarm_ringactivity)
+        setContentView(R.layout.fragment_alarm_ringactivity)
 
 
         dismiss.setOnClickListener {

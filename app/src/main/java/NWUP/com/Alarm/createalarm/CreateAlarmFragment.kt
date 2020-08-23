@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import kotlinx.android.synthetic.main.fragment_create_alarm.*
+import kotlinx.android.synthetic.main.fragment_alarm_create_alarm.*
 import java.util.*
 
 
@@ -42,7 +42,7 @@ class CreateAlarmFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_create_alarm, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_alarm_create_alarm, container, false)
 
         return view
     }

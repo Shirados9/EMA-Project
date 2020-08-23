@@ -1,4 +1,4 @@
-package NWUP.com.Alarm.activites
+package NWUP.com.Alarm.activities
 
 import NWUP.com.R
 import android.os.Bundle
@@ -23,7 +23,7 @@ class listalarm_main : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_listalarm_main, container, false)
+        return inflater.inflate(R.layout.fragment_alarm_main, container, false)
 
 
     }

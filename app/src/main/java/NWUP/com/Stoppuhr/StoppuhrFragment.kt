@@ -1,7 +1,6 @@
 package NWUP.com.Stoppuhr
 
 import NWUP.com.R
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_stoppuhr.*
+import kotlinx.android.synthetic.main.fragment_stoppuhr_main.*
 
 /**
  * A simple [Fragment] subclass.
@@ -28,7 +27,7 @@ class StoppuhrFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stoppuhr, container, false)
+        return inflater.inflate(R.layout.fragment_stoppuhr_main, container, false)
     }
 
     override fun onResume() {

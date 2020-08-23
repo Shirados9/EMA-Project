@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.stoppuhr_recycler_exampleitem.view.*
+import kotlinx.android.synthetic.main.fragment_stoppuhr_recycler_item.view.*
 
 
 class StoppuhrRecyclerAdapter(private val exampleList: List<StoppuhrExampleItem>) : RecyclerView.Adapter<StoppuhrRecyclerAdapter.ExampleViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.stoppuhr_recycler_exampleitem,
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.fragment_stoppuhr_recycler_item,
                 parent, false)
         return ExampleViewHolder(itemView)
     }

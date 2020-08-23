@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Weltuhr.PickTimeZone" />
-        <activity android:name=".Alarm.activites.AlarmRingActivity" />
+        <activity android:name=".Alarm.activities.AlarmRingActivity" />
         <receiver
             android:name=".Timer.TimerExpiredReceiver"
             android:enabled="true"
