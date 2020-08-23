@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class AlarmsListFragment : Fragment(),
@@ -20,7 +21,7 @@ class AlarmsListFragment : Fragment(),
     private lateinit var alarmRecyclerViewAdapter: AlarmRecyclerViewAdapter
     private lateinit var alarmsListViewModel: AlarmsListViewModel
     private lateinit var alarmsRecyclerView: RecyclerView
-    private lateinit var addAlarm: Button
+    private lateinit var addAlarm: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +50,7 @@ class AlarmsListFragment : Fragment(),
         alarmsRecyclerView = view.findViewById(R.id.fragment_listalarms_recylerView)
         alarmsRecyclerView.layoutManager = LinearLayoutManager(context)
         alarmsRecyclerView.adapter = alarmRecyclerViewAdapter
-        addAlarm = view.findViewById(R.id.fragment_listalarms_addAlarm)
+        addAlarm = view.findViewById(R.id.add_alarm)
         addAlarm.setOnClickListener{
                 Navigation.findNavController(it)
                     .navigate(R.id.action_alarmsListFragment_to_createAlarmFragment)

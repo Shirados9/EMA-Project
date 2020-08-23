@@ -1,122 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:background="@color/colorPrimaryDark">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TimePicker
+        android:id="@+id/fragment_createalarm_timePicker"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:headerBackground="@color/colorOrange"
+        android:numbersBackgroundColor="@color/colorLighterDark"
+        android:numbersInnerTextColor="@color/colorOrange"
+        android:numbersTextColor="@color/colorOrange"
+        android:timePickerMode="clock"
+        app:layout_constraintBottom_toTopOf="@id/fragment_createalarm_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/fragment_createalarm_scheduleAlarmHeading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Schedule Alarm"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/colorAccent"/>
+    <EditText
+        android:id="@+id/fragment_createalarm_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Alarm Title"
+        android:importantForAutofill="no"
+        android:inputType="textShortMessage"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_timePicker" />
 
-        <TimePicker
-            android:id="@+id/fragment_createalarm_timePicker"
-            android:layout_height="wrap_content"
-            android:timePickerMode="clock"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_scheduleAlarmHeading"
-            app:layout_constraintBottom_toTopOf="@id/fragment_createalarm_title"
-            android:layout_width="match_parent"/>
+    <CheckBox
+        android:id="@+id/fragment_createalarm_recurring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="Recurring Alarm"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_title" />
 
-        <EditText
-            android:id="@+id/fragment_createalarm_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Alarm Title"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_timePicker"
-            android:textColor="@color/colorAccent"/>
+    <LinearLayout
+        android:id="@+id/fragment_createalarm_recurring_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_recurring">
 
         <CheckBox
-            android:id="@+id/fragment_createalarm_recurring"
-            android:layout_width="match_parent"
+            android:id="@+id/fragment_createalarm_checkMon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="Recurring Alarm"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_title"
-            android:textColor="@color/colorAccent"/>
+            android:text="Mon"
+            android:textColor="@color/colorAccent" />
 
-        <LinearLayout
-            android:id="@+id/fragment_createalarm_recurring_options"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkTue"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_recurring">
+            android:text="Tue"
+            android:textColor="@color/colorAccent" />
 
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkMon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mon"
-                android:textColor="@color/colorAccent"/>
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkTue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tue"
-                android:textColor="@color/colorAccent"/>
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkWed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wed"
-                android:textColor="@color/colorAccent"/>
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkThu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Thu"
-                android:textColor="@color/colorAccent"/>
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkFri"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fri" />
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkSat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sat"
-                android:textColor="@color/colorAccent"/>
-
-            <CheckBox
-                android:id="@+id/fragment_createalarm_checkSun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sun"
-                android:textColor="@color/colorAccent"/>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/fragment_createalarm_scheduleAlarm"
-            android:layout_width="match_parent"
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkWed"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Schedule Alarm"
-            android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="133dp"
-            android:backgroundTint="@color/colorOrange"/>
+            android:text="Wed"
+            android:textColor="@color/colorAccent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkThu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thu"
+            android:textColor="@color/colorAccent" />
 
-</LinearLayout>
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkFri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fri" />
+
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkSat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sat"
+            android:textColor="@color/colorAccent" />
+
+        <CheckBox
+            android:id="@+id/fragment_createalarm_checkSun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sun"
+            android:textColor="@color/colorAccent" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fragment_createalarm_scheduleAlarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorOrange"
+        android:text="Alarm erstellen"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="133dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

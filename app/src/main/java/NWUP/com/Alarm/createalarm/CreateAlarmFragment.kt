@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_alarm_create_alarm.*
 import java.util.*
@@ -49,8 +48,8 @@ class CreateAlarmFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        fragment_createalarm_recurring.setOnCheckedChangeListener { buttonView, isChecked ->
+        fragment_createalarm_timePicker.setIs24HourView(true)
+        fragment_createalarm_recurring.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 fragment_createalarm_recurring_options.visibility = View.VISIBLE
             } else {
