@@ -1,6 +1,6 @@
 package NWUP.com
 
-import NWUP.com.Alarm.activities.listalarm_main
+import NWUP.com.Alarm.activities.AlarmFragment
 import NWUP.com.Stoppuhr.StoppuhrFragment
 import NWUP.com.Timer.TimerFragment
 import NWUP.com.Weltuhr.WeltuhrFragment
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.alarm -> {
-                    loadFragment(listalarm_main())
+                    loadFragment(AlarmFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.stoppuhr -> {

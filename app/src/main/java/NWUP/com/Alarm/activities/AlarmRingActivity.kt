@@ -14,24 +14,20 @@ import kotlinx.android.synthetic.main.fragment_alarm_ringactivity.*
 import java.util.*
 
 
-class AlarmRingActivity: AppCompatActivity() {
-    private var dismiss: Button = ringactivity_ring_dismiss
-    private var snooze: Button = ringactivity_ring_snooze
-    private var clock: ImageView = ringactivity_imageview
-
+class AlarmRingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_alarm_ringactivity)
 
 
-        dismiss.setOnClickListener {
+        ringactivity_ring_dismiss.setOnClickListener {
             val intentService =
                 Intent(applicationContext, AlarmService::class.java)
             applicationContext.stopService(intentService)
             finish()
         }
-        snooze.setOnClickListener {
+        ringactivity_ring_snooze.setOnClickListener {
             val calendar: Calendar = Calendar.getInstance()
             calendar.timeInMillis = System.currentTimeMillis()
             calendar.add(Calendar.MINUTE, 10)
@@ -60,11 +56,9 @@ class AlarmRingActivity: AppCompatActivity() {
     }
 
 
-
-
     private fun animateClock() {
         val rotateAnimation =
-            ObjectAnimator.ofFloat(clock, "rotation", 0f, 20f, 0f, -20f, 0f)
+            ObjectAnimator.ofFloat(ringactivity_imageview, "rotation", 0f, 20f, 0f, -20f, 0f)
         rotateAnimation.repeatCount = ValueAnimator.INFINITE
         rotateAnimation.duration = 800
         rotateAnimation.start()

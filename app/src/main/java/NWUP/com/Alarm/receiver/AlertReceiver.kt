@@ -9,7 +9,7 @@ import android.widget.Toast
 import java.util.*
 
 
-class AlertReceiver :BroadcastReceiver() {
+class AlertReceiver : BroadcastReceiver() {
     companion object {
         const val RECURRING = "RECURRING"
         const val MONDAY = "MONDAY"
@@ -26,19 +26,17 @@ class AlertReceiver :BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
 
         if (intent != null) {
-            if(Intent.ACTION_BOOT_COMPLETED == intent.action) {
+            if (Intent.ACTION_BOOT_COMPLETED == intent.action) {
                 val toastText = String.format("Alarm Reboot")
                 Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
                 startRescheduleAlarmsService(context)
-            }
-            else {
+            } else {
                 val toastText = String.format("Alarm Received")
                 Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
-                if(intent.getBooleanExtra(RECURRING,false)) {
+                if (intent.getBooleanExtra(RECURRING, false)) {
                     startAlarmService(context, intent)
-                }
-                else {
-                    if(alarmIsToday(intent)) {
+                } else {
+                    if (alarmIsToday(intent)) {
                         startAlarmService(context, intent)
                     }
                 }
@@ -72,7 +70,9 @@ class AlertReceiver :BroadcastReceiver() {
                 return intent.getBooleanExtra(SATURDAY, false)
             }
             Calendar.SUNDAY -> {
-                return intent.getBooleanExtra(SUNDAY, false)
+                //TODO: Boolean für alle Tage fixen
+                return true
+                //return intent.getBooleanExtra(SUNDAY, false)
             }
         }
         return false

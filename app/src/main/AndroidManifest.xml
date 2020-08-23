@@ -3,6 +3,7 @@
     package="NWUP.com">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"

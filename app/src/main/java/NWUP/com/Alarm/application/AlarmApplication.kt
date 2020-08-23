@@ -7,7 +7,7 @@ import android.os.Build
 
 
 class AlarmApplication: Application() {
-
+    //TODO: Notifications für neuere API's machen
     companion object {
         const val CHANNEL_ID = "ALARM_SERVICE_CHANNEL"
     }
