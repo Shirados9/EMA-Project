@@ -3,6 +3,7 @@ package NWUP.com.Alarm.application
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Context
 import android.os.Build
 
 
@@ -24,6 +25,7 @@ class AlarmApplication: Application() {
                 "Alarm Service Channel",
                 NotificationManager.IMPORTANCE_DEFAULT
             )
+
             val manager = getSystemService(
                 NotificationManager::class.java
             )

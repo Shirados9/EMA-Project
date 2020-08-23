@@ -37,10 +37,9 @@ class AlarmService: Service() {
         val notificationIntent = Intent(this, AlarmRingActivity::class.java)
         val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
 
-        //TODO: gescheiter String - checken ob title null ist
-        val alarmTitle =
-            "%s Alarm"
-            //String.format("%s Alarm", intent!!.getStringExtra(TITLE))
+
+        val bundle = intent!!.extras
+        val alarmTitle = String.format("%s Alarm", bundle!!.getString(TITLE))
 
         val notification =
             NotificationCompat.Builder(this, CHANNEL_ID)
@@ -70,4 +69,5 @@ class AlarmService: Service() {
         mediaPlayer.stop()
         vibrator.cancel()
     }
+
 }

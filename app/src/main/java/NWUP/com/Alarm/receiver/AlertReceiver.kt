@@ -37,11 +37,20 @@ class AlertReceiver : BroadcastReceiver() {
                     startAlarmService(context, intent)
                 } else {
                     if (alarmIsToday(intent)) {
-                        startAlarmService(context, intent)
+
+                        var bundle = intent.extras
+                        if (bundle != null) {
+                            if (bundle.getBoolean(RECURRING)) {
+                                startAlarmService(context, intent)
+                            } else {
+                                if (alarmIsToday(intent)) {
+                                    startAlarmService(context, intent)
+                                }
+                            }
+                        }
                     }
                 }
             }
-
         }
     }
 
@@ -49,30 +58,30 @@ class AlertReceiver : BroadcastReceiver() {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
         val today = calendar.get(Calendar.DAY_OF_WEEK)
+        val bundle = intent.extras
         //switch case in kotlin
+
         when (today) {
             Calendar.MONDAY -> {
-                return intent.getBooleanExtra(MONDAY, false)
+                return bundle!!.getBoolean(MONDAY)
             }
             Calendar.TUESDAY -> {
-                return intent.getBooleanExtra(TUESDAY, false)
+                return bundle!!.getBoolean(TUESDAY)
             }
             Calendar.WEDNESDAY -> {
-                return intent.getBooleanExtra(WEDNESDAY, false)
+                return bundle!!.getBoolean(WEDNESDAY)
             }
             Calendar.THURSDAY -> {
-                return intent.getBooleanExtra(THURSDAY, false)
+                return bundle!!.getBoolean(THURSDAY)
             }
             Calendar.FRIDAY -> {
-                return intent.getBooleanExtra(FRIDAY, false)
+                return bundle!!.getBoolean(FRIDAY)
             }
             Calendar.SATURDAY -> {
-                return intent.getBooleanExtra(SATURDAY, false)
+                return bundle!!.getBoolean(SATURDAY)
             }
             Calendar.SUNDAY -> {
-                //TODO: Boolean für alle Tage fixen
-                return true
-                //return intent.getBooleanExtra(SUNDAY, false)
+                return bundle!!.getBoolean(SUNDAY)
             }
         }
         return false
