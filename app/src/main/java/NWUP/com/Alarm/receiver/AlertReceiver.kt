@@ -33,13 +33,13 @@ class AlertReceiver : BroadcastReceiver() {
             } else {
                 val toastText = String.format("Alarm Received")
                 Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
-                if (intent.getBooleanExtra(RECURRING, false)) {
+
+                val bundle = intent.extras
+                if (bundle!!.getBoolean(RECURRING)) {
                     startAlarmService(context, intent)
                 } else {
                     if (alarmIsToday(intent)) {
 
-                        var bundle = intent.extras
-                        if (bundle != null) {
                             if (bundle.getBoolean(RECURRING)) {
                                 startAlarmService(context, intent)
                             } else {
@@ -47,7 +47,6 @@ class AlertReceiver : BroadcastReceiver() {
                                     startAlarmService(context, intent)
                                 }
                             }
-                        }
                     }
                 }
             }
@@ -89,7 +88,8 @@ class AlertReceiver : BroadcastReceiver() {
 
     private fun startAlarmService(context: Context?, intent: Intent) {
         val intentService = Intent(context, AlarmService::class.java)
-        intentService.putExtra(TITLE, intent.getStringExtra(TITLE))
+        val bundle = intent.extras
+        intentService.putExtra(TITLE, bundle!!.getString(TITLE))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context!!.startForegroundService(intentService)
         } else {
