@@ -15,6 +15,12 @@ class AlarmsListViewModel(application: Application) : AndroidViewModel(applicati
     fun update(alarm: Alarm?) {
         alarmRepository.update(alarm)
     }
+    fun deleteAll() {
+        alarmRepository.deleteAll()
+    }
+    fun getAlarms(): LiveData<List<Alarm>> {
+        return alarmRepository.getAlarms()
+    }
 
     init {
         alarmsLiveData = alarmRepository.alarmsLiveData

@@ -1,19 +1,22 @@
 package NWUP.com.Alarm.alarmsList
 
+import NWUP.com.Alarm.ItemTouchHelper.SwipetoDeleteCallback
 import NWUP.com.Alarm.data.Alarm
 import NWUP.com.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_alarm_list_alarms.view.*
+import kotlinx.android.synthetic.main.fragment_stoppuhr_main.*
 
 
 class AlarmsListFragment : Fragment(),
@@ -22,6 +25,7 @@ class AlarmsListFragment : Fragment(),
     private lateinit var alarmsListViewModel: AlarmsListViewModel
     private lateinit var alarmsRecyclerView: RecyclerView
     private lateinit var addAlarm: FloatingActionButton
+    private lateinit var deletAllButton: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +54,22 @@ class AlarmsListFragment : Fragment(),
         alarmsRecyclerView = view.findViewById(R.id.fragment_listalarms_recylerView)
         alarmsRecyclerView.layoutManager = LinearLayoutManager(context)
         alarmsRecyclerView.adapter = alarmRecyclerViewAdapter
+
+
+
+
+        val itemTouchHelper = ItemTouchHelper(SwipetoDeleteCallback(alarmRecyclerViewAdapter))
+        itemTouchHelper.attachToRecyclerView(alarmsRecyclerView)
+
+
+
+
         addAlarm = view.findViewById(R.id.add_alarm)
+        deletAllButton = view.delete_alarms
+
+        deletAllButton.setOnClickListener {
+            onDeleteAll()
+        }
         addAlarm.setOnClickListener{
                 Navigation.findNavController(it)
                     .navigate(R.id.action_alarmsListFragment_to_createAlarmFragment)
@@ -68,5 +87,10 @@ class AlarmsListFragment : Fragment(),
                 alarmsListViewModel.update(alarm)
             }
         }
+    }
+
+    fun onDeleteAll() {
+        alarmsListViewModel.deleteAll()
+        alarmsRecyclerView.adapter?.notifyDataSetChanged()
     }
 }

@@ -32,6 +32,9 @@ class AlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             alarmTitle.text = "My alarm"
         }
         alarmStarted.setOnCheckedChangeListener { buttonView, isChecked -> listener.onToggle(alarm) }
+
+
     }
+
 
 }

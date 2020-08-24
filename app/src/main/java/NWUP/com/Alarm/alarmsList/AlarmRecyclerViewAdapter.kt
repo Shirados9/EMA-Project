@@ -32,6 +32,8 @@ class AlarmRecyclerViewAdapter(listener: OnToggleAlarmListener) :
         notifyDataSetChanged()
     }
 
+
+
     init {
         alarms = ArrayList()
         this.listener = listener

@@ -17,6 +17,12 @@ class AlarmRepository(application: Application?) {
     fun update(alarm: Alarm?) =
         AlarmDatabase.databaseWriteExecutor.execute { alarmDao.update(alarm) }
 
+    fun deleteAll() = AlarmDatabase.databaseWriteExecutor.execute{ alarmDao.deleteAll() }
+
+    fun getAlarms(): LiveData<List<Alarm>> {
+        return alarmDao.getAlarms()
+    }
+
     init {
         val db: AlarmDatabase? = AlarmDatabase.getDatabase(application!!)
         alarmDao = db?.alarmDao()!!
