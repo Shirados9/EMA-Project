@@ -64,6 +64,13 @@
                 android:thumbTint="@color/colorOrange"
                 android:trackTint="@color/colorAccent" />
 
+            <Button
+                android:id="@+id/item_alarm_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delete" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

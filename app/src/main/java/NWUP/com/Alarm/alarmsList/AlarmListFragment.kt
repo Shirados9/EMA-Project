@@ -1,6 +1,5 @@
 package NWUP.com.Alarm.alarmsList
 
-import NWUP.com.Alarm.ItemTouchHelper.SwipetoDeleteCallback
 import NWUP.com.Alarm.data.Alarm
 import NWUP.com.R
 import android.os.Bundle
@@ -8,24 +7,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_alarm_list_alarms.view.*
-import kotlinx.android.synthetic.main.fragment_stoppuhr_main.*
+import kotlinx.coroutines.launch
 
 
 class AlarmsListFragment : Fragment(),
-    OnToggleAlarmListener {
+    OnClickAlarmListener {
     private lateinit var alarmRecyclerViewAdapter: AlarmRecyclerViewAdapter
     private lateinit var alarmsListViewModel: AlarmsListViewModel
     private lateinit var alarmsRecyclerView: RecyclerView
     private lateinit var addAlarm: FloatingActionButton
     private lateinit var deletAllButton: FloatingActionButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,13 +59,6 @@ class AlarmsListFragment : Fragment(),
 
 
 
-
-        val itemTouchHelper = ItemTouchHelper(SwipetoDeleteCallback(alarmRecyclerViewAdapter))
-        itemTouchHelper.attachToRecyclerView(alarmsRecyclerView)
-
-
-
-
         addAlarm = view.findViewById(R.id.add_alarm)
         deletAllButton = view.delete_alarms
 
@@ -74,6 +69,7 @@ class AlarmsListFragment : Fragment(),
                 Navigation.findNavController(it)
                     .navigate(R.id.action_alarmsListFragment_to_createAlarmFragment)
         }
+
         return view
     }
 
@@ -90,7 +86,33 @@ class AlarmsListFragment : Fragment(),
     }
 
     fun onDeleteAll() {
-        alarmsListViewModel.deleteAll()
-        alarmsRecyclerView.adapter?.notifyDataSetChanged()
+        lifecycleScope.launch {
+            val alarms = alarmsListViewModel.getAlarmData()
+
+            for (alarm in alarms){
+                if(alarm.started) {
+                    context?.let { alarm.cancelAlarm(it) }
+                }
+            }
+            alarmsListViewModel.deleteAll()
+            alarmsRecyclerView.adapter?.notifyDataSetChanged()
+
+        }
+    }
+
+    override fun onSwipeDelete(alarm: Alarm?) {
+
+        lifecycleScope.launch {
+            val ourAlarms = alarmsListViewModel.getAlarmData()
+            for(i in ourAlarms) {
+                if(i.alarmId == alarm!!.alarmId) {
+                    context?.let { alarm.cancelAlarm(it) }
+                }
+            }
+
+            alarmsListViewModel.delete(alarm)
+            alarmsRecyclerView.adapter?.notifyDataSetChanged()
+        }
+
     }
 }

@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 
-class AlarmRecyclerViewAdapter(listener: OnToggleAlarmListener) :
+class AlarmRecyclerViewAdapter(listener: OnClickAlarmListener) :
     RecyclerView.Adapter<AlarmViewHolder>() {
     private var alarms: List<Alarm>
-    private val listener: OnToggleAlarmListener
+    private val listener: OnClickAlarmListener
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
         val itemView: View =
             LayoutInflater.from(parent.context).inflate(R.layout.fragment_alarm_item, parent, false)

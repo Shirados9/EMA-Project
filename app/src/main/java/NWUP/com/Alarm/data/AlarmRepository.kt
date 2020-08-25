@@ -14,13 +14,21 @@ class AlarmRepository(application: Application?) {
     fun insert(alarm: Alarm?) =
         AlarmDatabase.databaseWriteExecutor.execute { alarmDao.insert(alarm) }
 
+    fun delete(alarm: Alarm?) =
+        AlarmDatabase.databaseWriteExecutor.execute {alarmDao.delete(alarm)}
+
     fun update(alarm: Alarm?) =
         AlarmDatabase.databaseWriteExecutor.execute { alarmDao.update(alarm) }
 
-    fun deleteAll() = AlarmDatabase.databaseWriteExecutor.execute{ alarmDao.deleteAll() }
+    fun deleteAll() =
+        AlarmDatabase.databaseWriteExecutor.execute{ alarmDao.deleteAll() }
 
     fun getAlarms(): LiveData<List<Alarm>> {
         return alarmDao.getAlarms()
+    }
+
+    suspend fun getAlarmsData(): List<Alarm> {
+        return alarmDao.getAlarmsData()
     }
 
     init {
