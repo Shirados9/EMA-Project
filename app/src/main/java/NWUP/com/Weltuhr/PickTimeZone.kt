@@ -3,7 +3,8 @@ package NWUP.com.Weltuhr
 import NWUP.com.R
 import NWUP.com.Weltuhr.WeltuhrFragment.Companion.RecyclerItems
 import android.os.Bundle
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
 import java.text.DateFormat
 import java.util.*
@@ -33,11 +34,7 @@ class PickTimeZone: AppCompatActivity() {
 
         // if item in dropdown menu gets clicked on, gets parameters to set in "Weltuhrfragment"
         autotextView.setOnItemClickListener { parent, view, position, id ->
-            // gets selected item from position
-            val selectedItem = parent.getItemAtPosition(position).toString()
-
-
-            val selectedItem_as_city = resources.getStringArray(R.array.zeitzone_als_stadt_states)[position]
+            val selecteditemAsCity = resources.getStringArray(R.array.zeitzone_als_stadt_states)[position]
 
             val selectedtimezone = resources.getStringArray(R.array.available_timezones)[position]
 
@@ -47,10 +44,7 @@ class PickTimeZone: AppCompatActivity() {
             val currentDate =  DateFormat.getDateInstance().format(c.time)
 
 
-            RecyclerItems.add(RecyclerItem(selectedItem_as_city,currentDate,selectedtimezone))
-
-            //RecyclerItems.add(RecyclerItem(selectedItem,currentDate,selectedtimezone))
-
+            RecyclerItems.add(RecyclerItem(selecteditemAsCity,currentDate,selectedtimezone))
             finish()
         }
 
