@@ -28,4 +28,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_add_circle_add"/>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/delete_alarms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/add_alarm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_flag"
+            />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,8 @@ package NWUP.com.Alarm.alarmsList
 
 import NWUP.com.Alarm.data.Alarm
 
-interface OnToggleAlarmListener {
+interface OnClickAlarmListener {
     fun onToggle(alarm: Alarm?)
+    fun onSwipeDelete(alarm: Alarm?)
+
 }
