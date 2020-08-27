@@ -2,10 +2,13 @@ package NWUP.com.Weltuhr
 
 import NWUP.com.R
 import NWUP.com.Weltuhr.WeltuhrFragment.Companion.RecyclerItems
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
 import java.text.DateFormat
 import java.util.*
 
@@ -45,11 +48,21 @@ class PickTimeZone: AppCompatActivity() {
 
 
             RecyclerItems.add(RecyclerItem(selecteditemAsCity,currentDate,selectedtimezone))
+            saveData()
             finish()
         }
 
     }
 
+    fun saveData() {
+        val sharedPreferences: SharedPreferences =
+            getSharedPreferences("weltuhr preferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(RecyclerItems)
+        editor.putString("weltuhr", json)
+        editor.apply()
+    }
 
 
 

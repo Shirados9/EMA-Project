@@ -1,10 +1,12 @@
 package NWUP.com.Weltuhr
 
+import android.content.Context
+import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class SwipeToDeleteCallBack(adapter: RecyclerAdapter): ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
-    private val mAdapter: RecyclerAdapter = adapter
+abstract class SwipeToDeleteCallBack(context: Context?): ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
+    //private val mAdapter: RecyclerAdapter = adapter
 
     override fun onMove(
         recyclerView: RecyclerView,
@@ -14,9 +16,14 @@ class SwipeToDeleteCallBack(adapter: RecyclerAdapter): ItemTouchHelper.SimpleCal
         return false
     }
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+    /*override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position: Int = viewHolder.adapterPosition
         mAdapter.deleteItem(position)
+        mAdapter.notifyItemRemoved(position)
+        mAdapter.notifyItemRangeChanged(position, WeltuhrFragment.RecyclerItems.size);
     }
+
+     */
 
 }

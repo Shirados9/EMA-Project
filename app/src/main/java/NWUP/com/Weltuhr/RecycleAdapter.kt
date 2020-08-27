@@ -13,10 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_weltuhr_recyclerview.view.*
 
 
-class RecyclerAdapter(private var exampleList: List<RecyclerItem>): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()  {
-    private var data: ArrayList<String>? = null
-    private lateinit var mRecentlyDeletedItem: RecyclerItem
-    private var mRecentlyDeletedItemPosition: Int = 0
+class RecyclerAdapter(var exampleList: ArrayList<RecyclerItem>): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>()  {
 
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -44,10 +41,11 @@ class RecyclerAdapter(private var exampleList: List<RecyclerItem>): RecyclerView
     }
 
     fun deleteItem(position: Int) {
-        mRecentlyDeletedItem = exampleList[position]
-        mRecentlyDeletedItemPosition = position
+
         RecyclerItems.removeAt(position)
         notifyItemRemoved(position)
+        notifyItemRangeChanged(position, RecyclerItems.size);
+        notifyDataSetChanged()
     }
 
 
