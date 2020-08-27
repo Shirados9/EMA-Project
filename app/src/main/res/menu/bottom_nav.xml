@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/weltuhr"
-        android:icon="@drawable/ic_account_circle_orange_24dp"
+        android:icon="@drawable/ic_world"
         android:title="Weltuhr" />
     <item
         android:id="@+id/alarm"
