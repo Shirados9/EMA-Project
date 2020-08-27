@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_alarm_item.view.*
 
 
@@ -16,7 +17,7 @@ class AlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val alarmRecurringDays: TextView = itemView.item_alarm_recurringDays
     private val alarmTitle: TextView = itemView.item_alarm_title
     private val alarmStarted: Switch = itemView.item_alarm_started
-    private val alarmDelete: Button = itemView.item_alarm_delete
+    private val alarmDelete: FloatingActionButton = itemView.item_alarm_delete
     fun bind(alarm: Alarm, listener: OnClickAlarmListener) {
         val alarmText = String.format("%02d:%02d", alarm.hour, alarm.minute)
         alarmTime.text = alarmText

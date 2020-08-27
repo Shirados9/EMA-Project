@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorAccent"
-                    android:textSize="10sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/item_alarm_title"
@@ -57,16 +57,22 @@
 
             <Switch
                 android:id="@+id/item_alarm_started"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:layout_marginRight="16dp"/>
 
-            <Button
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/item_alarm_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Delete" />
+                android:layout_gravity="center"
+                app:fabSize="mini"
+                android:text="Delete"
+                android:tint="@color/colorAccent"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:srcCompat="@drawable/ic_delete" />
 
         </LinearLayout>
 

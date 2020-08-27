@@ -3,15 +3,20 @@ package NWUP.com.Timer
 import NWUP.com.R
 import NWUP.com.Timer.util.PrefUtil
 import android.app.AlarmManager
+import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.*
+import android.widget.Button
+import android.widget.PopupMenu
+import android.widget.PopupWindow
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_timer_timer_content.*
 import kotlinx.android.synthetic.main.fragment_timer.*
+import kotlinx.android.synthetic.main.fragment_timer_popup.view.*
 import java.util.*
 
 class TimerFragment : Fragment() {
@@ -73,6 +78,20 @@ class TimerFragment : Fragment() {
         fabStop.setOnClickListener { view ->
             timer.cancel()
             onTimerFinished()
+        }
+        textView_countdown.setOnClickListener {
+            val dialogBuilder = AlertDialog.Builder(context)
+            val view = layoutInflater.inflate(R.layout.fragment_timer_popup, null)
+            dialogBuilder.setView(view)
+
+            val alertDialog = dialogBuilder.create()
+            alertDialog.show()
+
+            view.setTimerLength.setOnClickListener {
+                //TODO: Zeit in Sekunden umwandeln und machen das es geht
+                //view.inputMinutes
+                //view.inputSeconds um text zu bekommen
+            }
         }
     }
 
