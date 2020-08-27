@@ -89,6 +89,15 @@ class TimerFragment : Fragment() {
 
             view.setTimerLength.setOnClickListener {
                 //TODO: Zeit in Sekunden umwandeln und machen das es geht
+                val inputMinutes: String = view.inputMinutes.text.toString()
+                val inputSeconds: String = view.inputSeconds.text.toString()
+
+                progress_countdown.progress = inputMinutes.toInt() * 60 + inputSeconds.toInt()
+                textView_countdown.text = (inputMinutes.toInt() * 60 + inputSeconds.toInt()).toString()
+
+
+
+
                 //view.inputMinutes
                 //view.inputSeconds um text zu bekommen
             }
@@ -182,6 +191,7 @@ class TimerFragment : Fragment() {
     }
 
     private fun setNewTimerLength(){
+
         val lengthInMinutes = context?.let { PrefUtil.getTimerLength(it) }
         if (lengthInMinutes != null) {
             timerLengthSeconds = (lengthInMinutes * 60L)

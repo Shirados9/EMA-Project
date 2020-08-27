@@ -56,7 +56,7 @@ class WeltuhrFragment : Fragment() {
         super.onAttach(context)
         loadData()
     }
-    
+
 
     override fun onStart() {
         super.onStart()
