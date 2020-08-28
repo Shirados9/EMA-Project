@@ -7,10 +7,19 @@ import androidx.preference.PreferenceManager
 class PrefUtil {
     companion object {
 
+        private const val SET_TIMER_LENGTH = "com.nwup.timer.set_timer_length"
+
         fun getTimerLength(context: Context): Int{
-            //placeholder
-            return 1
+            val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+            return preferences.getInt(SET_TIMER_LENGTH, 10)
         }
+
+        fun setTimerLength(seconds: Int, context: Context){
+            val editor = PreferenceManager.getDefaultSharedPreferences(context).edit()
+            editor.putInt(SET_TIMER_LENGTH, seconds)
+            editor.apply()
+        }
+
 
         private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID = "com.nwup.timer.previous_timer_length_seconds"
 
