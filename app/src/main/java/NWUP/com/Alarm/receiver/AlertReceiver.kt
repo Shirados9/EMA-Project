@@ -49,7 +49,6 @@ class AlertReceiver : BroadcastReceiver() {
         calendar.timeInMillis = System.currentTimeMillis()
         val today = calendar.get(Calendar.DAY_OF_WEEK)
         val bundle = intent.extras
-        //switch case in kotlin
 
         when (today) {
             Calendar.MONDAY -> {

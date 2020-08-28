@@ -21,12 +21,14 @@ class AlarmRingActivity : AppCompatActivity() {
         setContentView(R.layout.fragment_alarm_ringactivity)
 
 
+        //starts new Intent to stop the Alarm
         ringactivity_ring_dismiss.setOnClickListener {
             val intentService =
                 Intent(applicationContext, AlarmService::class.java)
             applicationContext.stopService(intentService)
             finish()
         }
+        //constructs a new Alarm which starts in 10 Minutes
         ringactivity_ring_snooze.setOnClickListener {
             val calendar: Calendar = Calendar.getInstance()
             calendar.timeInMillis = System.currentTimeMillis()
@@ -56,6 +58,7 @@ class AlarmRingActivity : AppCompatActivity() {
     }
 
 
+    //lets the Alarm Image move
     private fun animateClock() {
         val rotateAnimation =
             ObjectAnimator.ofFloat(ringactivity_imageview, "rotation", 0f, 20f, 0f, -20f, 0f)

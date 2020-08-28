@@ -16,19 +16,6 @@ import java.util.*
 
 
 class CreateAlarmFragment : Fragment() {
-    /*private var timePicker: TimePicker = fragment_createalarm_timePicker
-    private var title: EditText = fragment_createalarm_title
-    private var scheduleAlarm: Button = fragment_createalarm_scheduleAlarm
-    private var recurring: CheckBox = fragment_createalarm_recurring
-    private var mon: CheckBox = fragment_createalarm_checkMon
-    private var tue: CheckBox = fragment_createalarm_checkTue
-    private var wed: CheckBox = fragment_createalarm_checkWed
-    private var thu: CheckBox = fragment_createalarm_checkThu
-    private var fri: CheckBox = fragment_createalarm_checkFri
-    private var sat: CheckBox = fragment_createalarm_checkSat
-    private var sun: CheckBox = fragment_createalarm_checkSun
-    private var recurringOptions: LinearLayout = fragment_createalarm_recurring_options
-*/
     private var createAlarmViewModel: CreateAlarmViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +43,8 @@ class CreateAlarmFragment : Fragment() {
                 fragment_createalarm_recurring_options.visibility = View.GONE
             }
         }
+
+        //sets current fragment to AlarmListFragment
         fragment_createalarm_scheduleAlarm.setOnClickListener {
                 scheduleAlarm()
                 Navigation.findNavController(it)
@@ -63,6 +52,7 @@ class CreateAlarmFragment : Fragment() {
         }
     }
 
+    //creates alarmItem to input in database
     private fun scheduleAlarm() {
         val alarmId: Int = Random().nextInt(Int.MAX_VALUE)
         val alarm = Alarm(

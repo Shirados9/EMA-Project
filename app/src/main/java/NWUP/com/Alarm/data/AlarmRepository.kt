@@ -23,10 +23,6 @@ class AlarmRepository(application: Application?) {
     fun deleteAll() =
         AlarmDatabase.databaseWriteExecutor.execute{ alarmDao.deleteAll() }
 
-    fun getAlarms(): LiveData<List<Alarm>> {
-        return alarmDao.getAlarms()
-    }
-
     suspend fun getAlarmsData(): List<Alarm> {
         return alarmDao.getAlarmsData()
     }

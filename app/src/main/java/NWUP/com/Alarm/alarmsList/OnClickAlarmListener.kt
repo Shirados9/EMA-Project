@@ -4,6 +4,6 @@ import NWUP.com.Alarm.data.Alarm
 
 interface OnClickAlarmListener {
     fun onToggle(alarm: Alarm?)
-    fun onSwipeDelete(alarm: Alarm?)
+    fun onItemDelete(alarm: Alarm?)
 
 }

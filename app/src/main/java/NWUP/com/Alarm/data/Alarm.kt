@@ -70,14 +70,14 @@ class Alarm(
         if (!recurring) {
             var toastText: String? = null
             try {
-                toastText = String.format("Einmaliger Alarm %s erstellt für %s um %02d:%02d", title, calendar.get(Calendar.DAY_OF_WEEK), hour, minute, alarmId)
+                toastText = String.format("Einmaliger Alarm \"%s\" erstellt um %02d:%02d", title, hour, minute)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
             Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmPendingIntent)
         } else {
-            val toastText = String.format("Wiederholender Alarm %s erstellt für %s um %02d:%02d", title, getRecurringDaysText(), hour, minute, alarmId)
+            val toastText = String.format("Wiederholender Alarm \"%s\" erstellt für %s um %02d:%02d", title, getRecurringDaysText(), hour, minute)
             Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
             val RUN_DAILY = 24 * 60 * 60 * 1000.toLong()
             alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, RUN_DAILY, alarmPendingIntent)
@@ -86,6 +86,7 @@ class Alarm(
         started = true
     }
 
+    //sends intent to cancel pending alarm
     fun cancelAlarm(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlertReceiver::class.java)
@@ -93,11 +94,24 @@ class Alarm(
         alarmManager.cancel(alarmPendingIntent)
         started = false
         val toastText =
-            String.format("Alarm cancelled for %02d:%02d with id %d", hour, minute, alarmId)
+            String.format("Alarm abgebrochen für %02d:%02d", hour, minute)
         Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
         Log.i("cancel", toastText)
     }
 
+    // without the line "started = false" to prevent the observer from using onToggle
+    fun cancelAlarmDelete(context: Context) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, AlertReceiver::class.java)
+        val alarmPendingIntent = PendingIntent.getBroadcast(context, alarmId, intent, 0)
+        alarmManager.cancel(alarmPendingIntent)
+        val toastText =
+            String.format("Alarm abgebrochen für %02d:%02d", hour, minute)
+        Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
+        Log.i("cancel", toastText)
+    }
+
+    //gets String to put in Toast in schedule
     fun getRecurringDaysText(): Any? {
         if (!recurring) {
             return null

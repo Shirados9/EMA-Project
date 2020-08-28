@@ -61,8 +61,6 @@ class AlarmService: Service() {
 
         return START_STICKY
 
-
-        //return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {

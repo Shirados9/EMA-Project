@@ -10,10 +10,6 @@ import androidx.lifecycle.Observer
 
 
 class RescheduleAlarmsService : LifecycleService() {
-    override fun onCreate() {
-        super.onCreate()
-    }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         val alarmRepository = AlarmRepository(application)
@@ -27,10 +23,6 @@ class RescheduleAlarmsService : LifecycleService() {
                 }
             })
         return Service.START_STICKY
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     override fun onBind(intent: Intent): IBinder? {

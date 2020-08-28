@@ -1,8 +1,8 @@
 package NWUP.com.Alarm.alarmsList
 
 import NWUP.com.Alarm.data.Alarm
+import NWUP.com.R
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Switch
 import android.widget.TextView
@@ -23,10 +23,10 @@ class AlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         alarmTime.text = alarmText
         alarmStarted.isChecked = alarm.started
         if (alarm.recurring) {
-            //alarmRecurring.setImageResource(R.drawable.ic_repeat_black_24dp)
+            alarmRecurring.setImageResource(R.drawable.ic_repeat_black_24dp)
             alarmRecurringDays.text = alarm.getRecurringDaysText().toString()
         } else {
-            //alarmRecurring.setImageResource(R.drawable.ic_looks_one_black_24dp)
+            alarmRecurring.setImageResource(R.drawable.ic_looks_one_black_24dp)
             alarmRecurringDays.text = "Once Off"
         }
         if (alarm.title.isNotEmpty()) {
@@ -34,8 +34,12 @@ class AlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         } else {
             alarmTitle.text = "My alarm"
         }
-        alarmStarted.setOnCheckedChangeListener { buttonView, isChecked -> listener.onToggle(alarm) }
-        alarmDelete.setOnClickListener {listener.onSwipeDelete(alarm = alarm)}
+        alarmStarted.setOnCheckedChangeListener { buttonView, isChecked ->
+            listener.onToggle(alarm)
+        }
+        alarmDelete.setOnClickListener {
+            listener.onItemDelete(alarm = alarm)
+        }
 
 
     }
