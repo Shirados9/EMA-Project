@@ -9,13 +9,18 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
 import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.PopupWindow
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_timer_timer_content.*
 import kotlinx.android.synthetic.main.fragment_timer.*
+import kotlinx.android.synthetic.main.fragment_timer_popup.*
 import kotlinx.android.synthetic.main.fragment_timer_popup.view.*
 import java.util.*
 
@@ -44,7 +49,7 @@ class TimerFragment : Fragment() {
             get() = Calendar.getInstance().timeInMillis / 1000
     }
 
-    enum class TimerState{
+    enum class TimerState {
         Stopped, Paused, Running
     }
 
@@ -63,9 +68,9 @@ class TimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fabStart.setOnClickListener{view ->
+        fabStart.setOnClickListener { view ->
             startTimer()
-            timerState =  TimerState.Running
+            timerState = TimerState.Running
             updateButtons()
         }
 
@@ -89,12 +94,41 @@ class TimerFragment : Fragment() {
 
             view.setTimerLength.setOnClickListener {
                 val inputMinutes: String = view.inputMinutes.text.toString()
-                //val inputSeconds: String = view.inputSeconds.text.toString()
+                val inputSeconds: String = view.inputSeconds.text.toString()
 
-                val testLength = inputMinutes.toInt() //* 60 + inputSeconds.toInt()
-                context?.let { it1 -> PrefUtil.setTimerLength(testLength, it1) }
+                val timerLength = inputMinutes.toInt() * 60 + inputSeconds.toInt()
+                context?.let { it1 -> PrefUtil.setTimerLength(timerLength, it1) }
                 alertDialog.hide()
+                timer.cancel()
+                onTimerFinished()
             }
+
+            // convert >= 60 seconds to seconds and minutes
+            // e.g 90 sec = 1 min 30 sec
+            view.inputSeconds.addTextChangedListener(object : TextWatcher {
+
+                override fun afterTextChanged(s: Editable) {
+                }
+
+                override fun beforeTextChanged(
+                    s: CharSequence, start: Int,
+                    count: Int, after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence, start: Int,
+                    before: Int, count: Int
+                ) {
+                    if (s.toString() != "") {
+                        val inputInt = s.toString().toInt()
+                        if (inputInt >= 60) {
+                            view.inputSeconds.setText(inputInt.rem(60).toString())
+                            view.inputMinutes.setText((inputInt / 60).toString())
+                        }
+                    }
+                }
+            })
         }
     }
 
@@ -111,11 +145,10 @@ class TimerFragment : Fragment() {
     override fun onPause() {
         super.onPause()
 
-        if (timerState == TimerState.Running){
+        if (timerState == TimerState.Running) {
             timer.cancel()
             val wakeUpTime = context?.let { setAlarm(it, nowSeconds, secondsRemaining) }
-        }
-        else if (timerState == TimerState.Paused){
+        } else if (timerState == TimerState.Paused) {
             //TODO: show notification
         }
 
@@ -124,7 +157,7 @@ class TimerFragment : Fragment() {
         context?.let { PrefUtil.setTimerState(timerState, it) }
     }
 
-    private fun initTimer(){
+    private fun initTimer() {
         timerState = context?.let { PrefUtil.getTimerState(it) }!!
 
         //we don't want to change the length of the timer which is already running
@@ -155,7 +188,7 @@ class TimerFragment : Fragment() {
         updateCountdownUI()
     }
 
-    private fun onTimerFinished(){
+    private fun onTimerFinished() {
         timerState = TimerState.Stopped
 
         //set the length of the timer to be the one set in SettingsActivity
@@ -171,7 +204,7 @@ class TimerFragment : Fragment() {
         updateCountdownUI()
     }
 
-    private fun startTimer(){
+    private fun startTimer() {
         timerState = TimerState.Running
 
         timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
@@ -184,31 +217,32 @@ class TimerFragment : Fragment() {
         }.start()
     }
 
-    private fun setNewTimerLength(){
+    private fun setNewTimerLength() {
 
-        val lengthInMinutes = context?.let { PrefUtil.getTimerLength(it) }
-        if (lengthInMinutes != null) {
-            timerLengthSeconds = (lengthInMinutes * 60L)
+        val lengthInSeconds = context?.let { PrefUtil.getTimerLength(it) }
+        if (lengthInSeconds != null) {
+            timerLengthSeconds = lengthInSeconds.toLong()
         }
         progress_countdown.max = timerLengthSeconds.toInt()
     }
 
-    private fun setPreviousTimerLength(){
+    private fun setPreviousTimerLength() {
         timerLengthSeconds = context?.let { PrefUtil.getPreviousTimerLengthSeconds(it) }!!
         progress_countdown.max = timerLengthSeconds.toInt()
     }
 
-    private fun updateCountdownUI(){
+    private fun updateCountdownUI() {
         val minutesUntilFinished = secondsRemaining / 60
         val secondsInMinuteUntilFinished = secondsRemaining - minutesUntilFinished * 60
         val secondsStr = secondsInMinuteUntilFinished.toString()
-        textView_countdown.text = "$minutesUntilFinished:${if (secondsStr.length == 2) secondsStr else "0" + secondsStr}"
+        textView_countdown.text =
+            "$minutesUntilFinished:${if (secondsStr.length == 2) secondsStr else "0" + secondsStr}"
         progress_countdown.progress = (timerLengthSeconds - secondsRemaining).toInt()
     }
 
-    private fun updateButtons(){
+    private fun updateButtons() {
         when (timerState) {
-            TimerState.Running ->{
+            TimerState.Running -> {
                 fabStart.isEnabled = false
                 fabPause.isEnabled = true
                 fabStop.isEnabled = true

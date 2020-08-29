@@ -44,7 +44,8 @@
             android:selectAllOnFocus="true"
             android:text="00"
             android:textColor="@color/colorAccent"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:maxLength="3"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -61,7 +62,8 @@
             android:selectAllOnFocus="true"
             android:text="00"
             android:textColor="@color/colorAccent"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:maxLength="2"/>
 
     </LinearLayout>
 
