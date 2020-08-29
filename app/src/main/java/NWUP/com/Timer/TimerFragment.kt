@@ -1,6 +1,7 @@
 package NWUP.com.Timer
 
 import NWUP.com.R
+import NWUP.com.Timer.util.NotificationUtil
 import NWUP.com.Timer.util.PrefUtil
 import android.app.AlarmManager
 import android.app.AlertDialog
@@ -12,15 +13,8 @@ import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
-import android.widget.Button
-import android.widget.PopupMenu
-import android.widget.PopupWindow
-import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_timer_timer_content.*
 import kotlinx.android.synthetic.main.fragment_timer.*
-import kotlinx.android.synthetic.main.fragment_timer_popup.*
 import kotlinx.android.synthetic.main.fragment_timer_popup.view.*
 import java.util.*
 
@@ -68,33 +62,36 @@ class TimerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fabStart.setOnClickListener { view ->
+
+        timerState = TimerState.Paused
+        startTimer()
+        fabStart.setOnClickListener {
             startTimer()
             timerState = TimerState.Running
             updateButtons()
         }
 
-        fabPause.setOnClickListener { view ->
+        fabPause.setOnClickListener {
             timer.cancel()
             timerState = TimerState.Paused
             updateButtons()
         }
 
-        fabStop.setOnClickListener { view ->
+        fabStop.setOnClickListener {
             timer.cancel()
             onTimerFinished()
         }
         textView_countdown.setOnClickListener {
             val dialogBuilder = AlertDialog.Builder(context)
-            val view = layoutInflater.inflate(R.layout.fragment_timer_popup, null)
-            dialogBuilder.setView(view)
+            val popupView = layoutInflater.inflate(R.layout.fragment_timer_popup, null)
+            dialogBuilder.setView(popupView)
 
             val alertDialog = dialogBuilder.create()
             alertDialog.show()
 
-            view.setTimerLength.setOnClickListener {
-                val inputMinutes: String = view.inputMinutes.text.toString()
-                val inputSeconds: String = view.inputSeconds.text.toString()
+            popupView.setTimerLength.setOnClickListener {
+                val inputMinutes: String = popupView.inputMinutes.text.toString()
+                val inputSeconds: String = popupView.inputSeconds.text.toString()
 
                 val timerLength = inputMinutes.toInt() * 60 + inputSeconds.toInt()
                 context?.let { it1 -> PrefUtil.setTimerLength(timerLength, it1) }
@@ -105,7 +102,7 @@ class TimerFragment : Fragment() {
 
             // convert >= 60 seconds to seconds and minutes
             // e.g 90 sec = 1 min 30 sec
-            view.inputSeconds.addTextChangedListener(object : TextWatcher {
+            popupView.inputSeconds.addTextChangedListener(object : TextWatcher {
 
                 override fun afterTextChanged(s: Editable) {
                 }
@@ -123,8 +120,8 @@ class TimerFragment : Fragment() {
                     if (s.toString() != "") {
                         val inputInt = s.toString().toInt()
                         if (inputInt >= 60) {
-                            view.inputSeconds.setText(inputInt.rem(60).toString())
-                            view.inputMinutes.setText((inputInt / 60).toString())
+                            popupView.inputSeconds.setText(inputInt.rem(60).toString())
+                            popupView.inputMinutes.setText((inputInt / 60).toString())
                         }
                     }
                 }
@@ -138,8 +135,7 @@ class TimerFragment : Fragment() {
         initTimer()
 
         context?.let { removeAlarm(it) }
-
-        //TODO: remove background timer, hide notification
+        context?.let { NotificationUtil.hideTimerNotification(it) }
     }
 
     override fun onPause() {
@@ -148,8 +144,9 @@ class TimerFragment : Fragment() {
         if (timerState == TimerState.Running) {
             timer.cancel()
             val wakeUpTime = context?.let { setAlarm(it, nowSeconds, secondsRemaining) }
+            context?.let { NotificationUtil.showTimerRunning(it, wakeUpTime!!) }
         } else if (timerState == TimerState.Paused) {
-            //TODO: show notification
+            context?.let { NotificationUtil.showTimerPaused(it) }
         }
 
         context?.let { PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, it) }
@@ -172,8 +169,6 @@ class TimerFragment : Fragment() {
         else
             timerLengthSeconds)!!
 
-        //TODO: change secondsRemaining according to where the background timer stopped
-
         val alarmSetTime = PrefUtil.getAlarmSetTime(requireContext())
         if (alarmSetTime > 0)
             secondsRemaining -= nowSeconds - alarmSetTime
@@ -195,7 +190,7 @@ class TimerFragment : Fragment() {
         //if the length was changed when the timer was running
         setNewTimerLength()
 
-        progress_countdown.progress = 0
+        progress_countdown.progress = 0F
 
         context?.let { PrefUtil.setSecondsRemaining(timerLengthSeconds, it) }
         secondsRemaining = timerLengthSeconds
@@ -223,12 +218,12 @@ class TimerFragment : Fragment() {
         if (lengthInSeconds != null) {
             timerLengthSeconds = lengthInSeconds.toLong()
         }
-        progress_countdown.max = timerLengthSeconds.toInt()
+        progress_countdown.progressMax = timerLengthSeconds.toFloat()
     }
 
     private fun setPreviousTimerLength() {
         timerLengthSeconds = context?.let { PrefUtil.getPreviousTimerLengthSeconds(it) }!!
-        progress_countdown.max = timerLengthSeconds.toInt()
+        progress_countdown.progressMax = timerLengthSeconds.toFloat()
     }
 
     private fun updateCountdownUI() {
@@ -237,7 +232,7 @@ class TimerFragment : Fragment() {
         val secondsStr = secondsInMinuteUntilFinished.toString()
         textView_countdown.text =
             "$minutesUntilFinished:${if (secondsStr.length == 2) secondsStr else "0" + secondsStr}"
-        progress_countdown.progress = (timerLengthSeconds - secondsRemaining).toInt()
+        progress_countdown.setProgressWithAnimation((timerLengthSeconds - secondsRemaining).toFloat(), 1000)
     }
 
     private fun updateButtons() {
