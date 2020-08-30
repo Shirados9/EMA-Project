@@ -10,7 +10,7 @@
         android:id="@+id/ringactivity_textview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ring Ring"
+        android:text="@string/ring_ring"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +32,7 @@
         android:id="@+id/ringactivity_ring_dismiss"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Dismiss"
+        android:text="@string/ausschalten"
         app:layout_constraintBottom_toTopOf="@+id/ringactivity_ring_snooze"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -41,7 +41,7 @@
         android:id="@+id/ringactivity_ring_snooze"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Snooze"
+        android:text="@string/snooze"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

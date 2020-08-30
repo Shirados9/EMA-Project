@@ -131,12 +131,12 @@ class Alarm(
 
         var days = ""
         if (monday) days += "Mo "
-        if (tuesday) days += "Tu "
-        if (wednesday) days += "We "
-        if (thursday) days += "Th "
+        if (tuesday) days += "Di "
+        if (wednesday) days += "Mi "
+        if (thursday) days += "Do "
         if (friday) days += "Fr "
         if (saturday) days += "Sa "
-        if (sunday) days += "Su "
+        if (sunday) days += "So "
 
         return days
     }
