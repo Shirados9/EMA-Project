@@ -26,11 +26,11 @@ class AlertReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
 
         if (Intent.ACTION_BOOT_COMPLETED == intent!!.action) {
-            val toastText = String.format("Alarm Reboot")
+            val toastText = String.format("Alarm Neustart")
             Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
             startRescheduleAlarmsService(context)
         } else {
-            val toastText = String.format("Alarm Received")
+            val toastText = String.format("Alarm erhalten")
             Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
             val bundle = intent.extras
             if (bundle!!.getBoolean(RECURRING)) {

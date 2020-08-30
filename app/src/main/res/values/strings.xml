@@ -1,11 +1,35 @@
 <resources>
     <string name="app_name">NWUP</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <string name="hint"> Bitte gebe eine Zeitzone ein </string>
-    <string name="submitted_timezone">Submitted Timezone</string>
+    <string name="fre">Fre</string>
+    <string name="sam">Sam</string>
+    <string name="son">Son</string>
+    <string name="alarm_erstellen">Alarm erstellen</string>
+    <string name="don">Don</string>
+    <string name="mit">Mit</string>
+    <string name="die">Die</string>
+    <string name="mon">Mon</string>
+    <string name="wiederholend">Wiederholend</string>
+    <string name="alarm_titel">Alarm Titel</string>
+    <string name="_00_00">00:00</string>
+    <string name="alarmtitel">Alarmtitel</string>
+    <string name="ring_ring">Ring Ring</string>
+    <string name="ausschalten">Ausschalten</string>
+    <string name="snooze">Snooze</string>
+    <string name="line_1">Line 1</string>
+    <string name="line_2">Line 2</string>
+    <string name="_10_00">10:00</string>
+    <string name="zeit_angeben">Zeit angeben</string>
+    <string name="minuten">Minuten:</string>
+    <string name="_00">00</string>
+    <string name="seconds">Seconds:</string>
+    <string name="eintragen">Eintragen</string>
+    <string name="aktuelle_zeitzone">Aktuelle Zeitzone</string>
+    <string name="currentdate">CurrentDate</string>
+    <string name="derzeitige_zeitzone">Derzeitige Zeitzone</string>
+    <string name="textview">TextView</string>
+    <string name="nwup_clock">NWUP-Clock</string>
 
     <string-array name="zeitzonen">
         <item>US Pacific Time (US) PDT UTC-7</item>

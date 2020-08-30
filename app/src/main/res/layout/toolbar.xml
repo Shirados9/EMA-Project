@@ -9,7 +9,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NWUP-Clock"
+        android:text="@string/nwup_clock"
         android:textColor="#FFFCFC"
         android:textSize="24sp" />
 

@@ -27,12 +27,12 @@ class AlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             alarmRecurringDays.text = alarm.getRecurringDaysText().toString()
         } else {
             alarmRecurring.setImageResource(R.drawable.ic_looks_one_black_24dp)
-            alarmRecurringDays.text = "Once Off"
+            alarmRecurringDays.text = "Einmalig"
         }
         if (alarm.title.isNotEmpty()) {
             alarmTitle.text = alarm.title
         } else {
-            alarmTitle.text = "My alarm"
+            alarmTitle.text = "Mein alarm"
         }
         alarmStarted.setOnCheckedChangeListener { buttonView, isChecked ->
             listener.onToggle(alarm)

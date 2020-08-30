@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toEndOf="@+id/fabStart"
         app:layout_constraintTop_toBottomOf="@+id/progress_countdown"
-        app:srcCompat="@drawable/ic_replay" />
+        app:srcCompat="@drawable/ic_stop" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabPause"

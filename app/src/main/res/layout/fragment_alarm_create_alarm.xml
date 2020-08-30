@@ -22,7 +22,7 @@
         android:id="@+id/fragment_createalarm_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Alarm Title"
+        android:hint="@string/alarm_titel"
         android:importantForAutofill="no"
         android:inputType="textShortMessage"
         android:textColor="@color/colorAccent"
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:checked="false"
-        android:text="Recurring Alarm"
+        android:text="@string/wiederholend"
         android:textColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_createalarm_title" />
@@ -51,48 +51,49 @@
             android:id="@+id/fragment_createalarm_checkMon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mon"
+            android:text="@string/mon"
             android:textColor="@color/colorAccent" />
 
         <CheckBox
             android:id="@+id/fragment_createalarm_checkTue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tue"
+            android:text="@string/die"
             android:textColor="@color/colorAccent" />
 
         <CheckBox
             android:id="@+id/fragment_createalarm_checkWed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wed"
+            android:text="@string/mit"
             android:textColor="@color/colorAccent" />
 
         <CheckBox
             android:id="@+id/fragment_createalarm_checkThu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thu"
+            android:text="@string/don"
             android:textColor="@color/colorAccent" />
 
         <CheckBox
             android:id="@+id/fragment_createalarm_checkFri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fri" />
+            android:text="@string/fre"
+            android:textColor="@color/colorAccent"/>
 
         <CheckBox
             android:id="@+id/fragment_createalarm_checkSat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sat"
+            android:text="@string/sam"
             android:textColor="@color/colorAccent" />
 
         <CheckBox
             android:id="@+id/fragment_createalarm_checkSun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sun"
+            android:text="@string/son"
             android:textColor="@color/colorAccent" />
 
     </LinearLayout>
@@ -103,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/colorOrange"
-        android:text="Alarm erstellen"
+        android:text="@string/alarm_erstellen"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="133dp" />
