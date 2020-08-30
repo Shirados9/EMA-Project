@@ -29,10 +29,9 @@ class CreateAlarmFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_alarm_create_alarm, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_alarm_create_alarm, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragment_createalarm_timePicker.setIs24HourView(true)
@@ -46,9 +45,9 @@ class CreateAlarmFragment : Fragment() {
 
         //sets current fragment to AlarmListFragment
         fragment_createalarm_scheduleAlarm.setOnClickListener {
-                scheduleAlarm()
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_createAlarmFragment_to_alarmsListFragment)
+            scheduleAlarm()
+            Navigation.findNavController(it)
+                .navigate(R.id.action_createAlarmFragment_to_alarmsListFragment)
         }
     }
 

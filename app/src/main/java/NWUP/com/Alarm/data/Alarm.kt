@@ -90,8 +90,8 @@ class Alarm(
             else {
                 val toastText = String.format("Wiederholender Alarm \"%s\" erstellt für %s um %02d:%02d", title, getRecurringDaysText(), hour, minute)
                 Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
-                val RUN_DAILY = 24 * 60 * 60 * 1000.toLong()
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, RUN_DAILY, alarmPendingIntent)
+                val runDaily = 24 * 60 * 60 * 1000.toLong()
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, runDaily, alarmPendingIntent)
             }
         }
 

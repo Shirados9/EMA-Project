@@ -95,7 +95,7 @@ class WeltuhrFragment : Fragment() {
         editor.apply()
     }
 
-    fun loadData() {
+    private fun loadData() {
         val sharedPreferences: SharedPreferences =
             requireActivity().getSharedPreferences("com.weltuhr.preferences", MODE_PRIVATE)
         val gson = Gson()

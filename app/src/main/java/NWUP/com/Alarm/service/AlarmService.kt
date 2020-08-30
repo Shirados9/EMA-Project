@@ -18,8 +18,8 @@ import java.lang.String
 
 class AlarmService: Service() {
 
-    lateinit var mediaPlayer: MediaPlayer
-    lateinit var vibrator: Vibrator
+    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var vibrator: Vibrator
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
