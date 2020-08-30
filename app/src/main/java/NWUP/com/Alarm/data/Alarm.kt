@@ -20,6 +20,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
+
+//Alarm class which contains all necessary information for an alarm, also the dataobject which goes in the database
 @Entity(tableName = "alarm_table")
 class Alarm(
     @PrimaryKey

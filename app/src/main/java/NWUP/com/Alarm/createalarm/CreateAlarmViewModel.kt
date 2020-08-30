@@ -5,7 +5,7 @@ import NWUP.com.Alarm.data.AlarmRepository
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 
-
+//access to the database
 class CreateAlarmViewModel(application: Application) : AndroidViewModel(application) {
     private val alarmRepository: AlarmRepository =
         AlarmRepository(application)

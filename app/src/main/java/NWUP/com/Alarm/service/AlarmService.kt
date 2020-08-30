@@ -12,8 +12,6 @@ import android.media.MediaPlayer
 import android.os.IBinder
 import android.os.Vibrator
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import java.lang.String
 
 
 class AlarmService: Service() {

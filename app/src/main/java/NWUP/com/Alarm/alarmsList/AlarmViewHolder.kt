@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_alarm_item.view.*
 
-
+//Viewholder for Adapter + ClickListener for items
 class AlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val alarmTime: TextView = itemView.item_alarm_time
     private val alarmRecurring: ImageView = itemView.item_alarm_recurring

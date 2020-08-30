@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_alarm_create_alarm.*
 import java.util.*
 
 
+//creates the fragment to create alarms and save it in the database
 class CreateAlarmFragment : Fragment() {
     private var createAlarmViewModel: CreateAlarmViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {

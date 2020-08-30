@@ -2,11 +2,10 @@
 
 package NWUP.com.Alarm.data
 
-import NWUP.com.Alarm.data.Alarm
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
-
+//Dao for database querys
 @Dao
 interface AlarmDao {
     @Insert

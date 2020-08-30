@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_alarm_list_alarms.view.*
 import kotlinx.coroutines.launch
 
-
+//creates the fragment to list all created Alarms and to link the parentfragment to CreateAlarm
 class AlarmsListFragment : Fragment(),
     OnClickAlarmListener {
     private lateinit var alarmRecyclerViewAdapter: AlarmRecyclerViewAdapter

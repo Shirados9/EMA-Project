@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+//returns a database object and creates it if it doesnt exist
 @Database(entities = [Alarm::class], version = 1, exportSchema = false)
 abstract class AlarmDatabase : RoomDatabase() {
     abstract fun alarmDao(): AlarmDao?

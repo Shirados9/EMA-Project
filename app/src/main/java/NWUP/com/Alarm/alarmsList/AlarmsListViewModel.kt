@@ -6,7 +6,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 
-
+//Class to access database
 class AlarmsListViewModel(application: Application) : AndroidViewModel(application) {
     private val alarmRepository: AlarmRepository =
         AlarmRepository(application)

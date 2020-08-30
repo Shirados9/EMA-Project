@@ -3,10 +3,9 @@ package NWUP.com.Alarm.application
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Context
 import android.os.Build
 
-
+//creates the notification channel with the id "CHANNEL_ID"
 class AlarmApplication: Application() {
     companion object {
         const val CHANNEL_ID = "ALARM_SERVICE_CHANNEL"

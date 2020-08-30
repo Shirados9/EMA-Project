@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-
+//Adapter for AlarmListFragment
 class AlarmRecyclerViewAdapter(listener: OnClickAlarmListener) :
     RecyclerView.Adapter<AlarmViewHolder>() {
     private var alarms: List<Alarm>
