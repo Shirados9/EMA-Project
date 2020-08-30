@@ -8,7 +8,8 @@ import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.media.MediaPlayer
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -65,7 +66,8 @@ class TimerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         timerState = TimerState.Paused
-        startTimer()
+        initializeTimer()
+
         fabStart.setOnClickListener {
             startTimer()
             timerState = TimerState.Running
@@ -155,6 +157,14 @@ class TimerFragment : Fragment() {
         context?.let { PrefUtil.setTimerState(timerState, it) }
     }
 
+    private fun initializeTimer() {
+        timer = object : CountDownTimer(1, 1) {
+            override fun onFinish() {}
+
+            override fun onTick(millisUntilFinished: Long) {}
+        }
+    }
+
     private fun initTimer() {
         timerState = context?.let { PrefUtil.getTimerState(it) }!!
 
@@ -187,10 +197,14 @@ class TimerFragment : Fragment() {
     private fun onTimerFinished() {
         timerState = TimerState.Stopped
 
-//        if (secondsRemaining <= 0 && timerState == TimerState.Stopped) {
-//            val mediaPlayer = MediaPlayer.create(context, R.raw.alarm)
-//            mediaPlayer.start()
-//        }
+        if (secondsRemaining <= 0 && timerState == TimerState.Stopped) {
+            val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            val r = RingtoneManager.getRingtone(
+                context,
+                notification
+            )
+            r.play()
+        }
 
         //set the length of the timer to be the one set in SettingsActivity
         //if the length was changed when the timer was running
@@ -210,7 +224,6 @@ class TimerFragment : Fragment() {
 
         timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
             override fun onFinish() = onTimerFinished()
-
 
             override fun onTick(millisUntilFinished: Long) {
                 secondsRemaining = millisUntilFinished / 1000

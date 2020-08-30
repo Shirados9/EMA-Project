@@ -11,7 +11,6 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
@@ -19,6 +18,9 @@ import androidx.core.app.NotificationCompat
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * builds notifications when leaving the app
+ */
 class NotificationUtil {
     companion object {
         private const val CHANNEL_ID_TIMER = "menu_timer"
@@ -28,13 +30,19 @@ class NotificationUtil {
         fun showTimerExpired(context: Context) {
             val startIntent = Intent(context, TimerNotificationActionReceiver::class.java)
             startIntent.action = AppConstants.ACTION_START
-            val mediaPlayer = MediaPlayer.create(context, R.raw.alarm)
-            mediaPlayer.start()
+
+            val notification: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            val r = RingtoneManager.getRingtone(
+                context,
+                notification
+            )
+            r.play()
+
             val startPendingIntent = PendingIntent.getBroadcast(
                 context,
                 0, startIntent, PendingIntent.FLAG_UPDATE_CURRENT
             )
-            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, true)
+            val nBuilder = getBasicNotificationBuilder(context, CHANNEL_ID_TIMER, false)
             nBuilder.setContentTitle("Timer Expired!")
                 .setContentText("Start again?")
                 .setContentIntent(getResultPendingTimerIntent(context))
@@ -42,7 +50,7 @@ class NotificationUtil {
 
             val nManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, true)
+            nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, false)
 
             nManager.notify(TIMER_ID, nBuilder.build())
         }
@@ -96,7 +104,7 @@ class NotificationUtil {
 
             val nManager =
                 context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER,  false)
+            nManager.createNotificationChannel(CHANNEL_ID_TIMER, CHANNEL_NAME_TIMER, false)
 
             nManager.notify(TIMER_ID, nBuilder.build())
         }
@@ -124,6 +132,11 @@ class NotificationUtil {
             return nBuilder
         }
 
+        /**
+         * when clicking on the notification, MainActivity opens
+         * in MainActivity intent gets handled and TimerFragment opens
+         * returns [PendingIntent]
+         */
         private fun getResultPendingTimerIntent(context: Context): PendingIntent {
             val resultIntent = Intent(context, MainActivity::class.java)
             resultIntent.putExtra("startTimeFragment", "timerFragment")
@@ -135,6 +148,9 @@ class NotificationUtil {
             )
         }
 
+        /**
+         * for APIs > 25
+         */
         @TargetApi(26)
         private fun NotificationManager.createNotificationChannel(
             channelID: String,
