@@ -3,16 +3,15 @@ package NWUP.com.Timer.util
 import NWUP.com.MainActivity
 import NWUP.com.R
 import NWUP.com.Timer.AppConstants
-import NWUP.com.Timer.TimerFragment
 import NWUP.com.Timer.TimerNotificationActionReceiver
 import android.annotation.TargetApi
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
@@ -29,6 +28,8 @@ class NotificationUtil {
         fun showTimerExpired(context: Context) {
             val startIntent = Intent(context, TimerNotificationActionReceiver::class.java)
             startIntent.action = AppConstants.ACTION_START
+            val mediaPlayer = MediaPlayer.create(context, R.raw.alarm)
+            mediaPlayer.start()
             val startPendingIntent = PendingIntent.getBroadcast(
                 context,
                 0, startIntent, PendingIntent.FLAG_UPDATE_CURRENT

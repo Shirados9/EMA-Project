@@ -8,6 +8,7 @@ import android.app.AlertDialog
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
@@ -186,6 +187,11 @@ class TimerFragment : Fragment() {
     private fun onTimerFinished() {
         timerState = TimerState.Stopped
 
+//        if (secondsRemaining <= 0 && timerState == TimerState.Stopped) {
+//            val mediaPlayer = MediaPlayer.create(context, R.raw.alarm)
+//            mediaPlayer.start()
+//        }
+
         //set the length of the timer to be the one set in SettingsActivity
         //if the length was changed when the timer was running
         setNewTimerLength()
@@ -204,6 +210,7 @@ class TimerFragment : Fragment() {
 
         timer = object : CountDownTimer(secondsRemaining * 1000, 1000) {
             override fun onFinish() = onTimerFinished()
+
 
             override fun onTick(millisUntilFinished: Long) {
                 secondsRemaining = millisUntilFinished / 1000
@@ -232,7 +239,10 @@ class TimerFragment : Fragment() {
         val secondsStr = secondsInMinuteUntilFinished.toString()
         textView_countdown.text =
             "$minutesUntilFinished:${if (secondsStr.length == 2) secondsStr else "0" + secondsStr}"
-        progress_countdown.setProgressWithAnimation((timerLengthSeconds - secondsRemaining).toFloat(), 1000)
+        progress_countdown.setProgressWithAnimation(
+            (timerLengthSeconds - secondsRemaining).toFloat(),
+            1000
+        )
     }
 
     private fun updateButtons() {

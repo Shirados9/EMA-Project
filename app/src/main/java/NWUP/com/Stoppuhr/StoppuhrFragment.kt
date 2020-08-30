@@ -69,6 +69,7 @@ class StoppuhrFragment : Fragment() {
             stopwatchStart.setImageResource(R.drawable.ic_play_arrow)
             stopwatchReset.hide()
             stopwatchLap.hide()
+            stopwatchShare.hide()
             clearRecyclerView()
             isRunning = false
         }
