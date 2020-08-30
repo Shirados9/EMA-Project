@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/ringactivity_textview"
@@ -15,7 +16,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorOrange" />
 
     <ImageView
         android:id="@+id/ringactivity_imageview"
@@ -35,7 +37,9 @@
         android:text="@string/ausschalten"
         app:layout_constraintBottom_toTopOf="@+id/ringactivity_ring_snooze"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:tint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorOrange"/>
 
     <Button
         android:id="@+id/ringactivity_ring_snooze"
@@ -44,6 +48,8 @@
         android:text="@string/snooze"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:tint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorOrange"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
