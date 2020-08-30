@@ -30,13 +30,14 @@ class WeltuhrFragment : Fragment() {
     private fun setCurrentDate() {
         // gets current time, date and timezone
         val calendar = Calendar.getInstance()
-        val currentDate =  DateFormat.getDateInstance().format(calendar.time)
+        val currentDate = DateFormat.getDateInstance().format(calendar.time)
         val tz: TimeZone = TimeZone.getDefault()
 
         // sets current date and timezone
         currenttimezone.text = tz.displayName
-        currentdate.text= currentDate
+        currentdate.text = currentDate
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,12 +69,6 @@ class WeltuhrFragment : Fragment() {
         recycler_weltuhr.setHasFixedSize(true)
 
         mAdapter = RecyclerAdapter(RecyclerItems)
-        /*val ft = requireFragmentManager().beginTransaction()
-        ft.detach(this@WeltuhrFragment).attach(this@WeltuhrFragment).commit()
-
-         */
-
-
 
         val swipeHandler = object : SwipeToDeleteCallBack(context) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
@@ -92,7 +87,7 @@ class WeltuhrFragment : Fragment() {
 
     fun saveData() {
         val sharedPreferences: SharedPreferences =
-            requireActivity().getSharedPreferences("weltuhr preferences", MODE_PRIVATE)
+            requireActivity().getSharedPreferences("com.weltuhr.preferences", MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val json = gson.toJson(RecyclerItems)
@@ -102,10 +97,10 @@ class WeltuhrFragment : Fragment() {
 
     fun loadData() {
         val sharedPreferences: SharedPreferences =
-            requireActivity().getSharedPreferences("weltuhr preferences", MODE_PRIVATE)
+            requireActivity().getSharedPreferences("com.weltuhr.preferences", MODE_PRIVATE)
         val gson = Gson()
         val emptyList = Gson().toJson(ArrayList<RecyclerItem>())
-        val json = sharedPreferences.getString("weltuhr",emptyList)
+        val json = sharedPreferences.getString("weltuhr", emptyList)
         val type: Type = object : TypeToken<ArrayList<RecyclerItem>>() {}.type
         RecyclerItems = gson.fromJson(json, type)
 

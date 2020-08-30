@@ -44,7 +44,7 @@ class RecyclerAdapter(var exampleList: ArrayList<RecyclerItem>): RecyclerView.Ad
 
         RecyclerItems.removeAt(position)
         notifyItemRemoved(position)
-        notifyItemRangeChanged(position, RecyclerItems.size);
+        notifyItemRangeChanged(position, RecyclerItems.size)
         notifyDataSetChanged()
     }
 

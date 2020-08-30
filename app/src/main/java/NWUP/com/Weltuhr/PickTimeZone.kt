@@ -12,7 +12,7 @@ import com.google.gson.Gson
 import java.text.DateFormat
 import java.util.*
 
-class PickTimeZone: AppCompatActivity() {
+class PickTimeZone : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_weltuhr_timezonepicker)
@@ -23,7 +23,7 @@ class PickTimeZone: AppCompatActivity() {
 
 
         // creates adapter with ressource zeitzonen
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,zeitzonen)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, zeitzonen)
 
 
         // sets autotextview together with adapter to show available timezones in dropdown menu
@@ -36,34 +36,30 @@ class PickTimeZone: AppCompatActivity() {
         }
 
         // if item in dropdown menu gets clicked on, gets parameters to set in "Weltuhrfragment"
-        autotextView.setOnItemClickListener { parent, view, position, id ->
-            val selecteditemAsCity = resources.getStringArray(R.array.zeitzone_als_stadt_states)[position]
+        autotextView.setOnItemClickListener { _, _, position, _ ->
+            val selectedItemAsCity =
+                resources.getStringArray(R.array.zeitzone_als_stadt_states)[position]
 
-            val selectedtimezone = resources.getStringArray(R.array.available_timezones)[position]
+            val selectedTimezone = resources.getStringArray(R.array.available_timezones)[position]
 
-            val tz = TimeZone.getTimeZone(selectedtimezone)
+            val tz = TimeZone.getTimeZone(selectedTimezone)
             val c = Calendar.getInstance(tz)
 
-            val currentDate =  DateFormat.getDateInstance().format(c.time)
+            val currentDate = DateFormat.getDateInstance().format(c.time)
 
-
-            RecyclerItems.add(RecyclerItem(selecteditemAsCity,currentDate,selectedtimezone))
+            RecyclerItems.add(RecyclerItem(selectedItemAsCity, currentDate, selectedTimezone))
             saveData()
             finish()
         }
-
     }
 
-    fun saveData() {
+    private fun saveData() {
         val sharedPreferences: SharedPreferences =
-            getSharedPreferences("weltuhr preferences", Context.MODE_PRIVATE)
+            getSharedPreferences("com.weltuhr.preferences", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val json = gson.toJson(RecyclerItems)
         editor.putString("weltuhr", json)
         editor.apply()
     }
-
-
-
 }

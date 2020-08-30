@@ -20,6 +20,11 @@ import kotlinx.android.synthetic.main.fragment_timer.*
 import kotlinx.android.synthetic.main.fragment_timer_popup.view.*
 import java.util.*
 
+/**
+ * developed with the help of the  video series:
+ * https://www.youtube.com/watch?v=xtElLuzjA0U
+ * https://www.youtube.com/watch?v=MDuGwI6P-X8&list=PLrnPJCHvNZuB8wxqXCwKw2_NkyEmFwcSd&index=1
+ */
 class TimerFragment : Fragment() {
 
     companion object {
@@ -116,6 +121,7 @@ class TimerFragment : Fragment() {
                 ) {
                 }
 
+                // if minutes > 60; conversion to 1 min etc.
                 override fun onTextChanged(
                     s: CharSequence, start: Int,
                     before: Int, count: Int
@@ -206,8 +212,6 @@ class TimerFragment : Fragment() {
             r.play()
         }
 
-        //set the length of the timer to be the one set in SettingsActivity
-        //if the length was changed when the timer was running
         setNewTimerLength()
 
         progress_countdown.progress = 0F

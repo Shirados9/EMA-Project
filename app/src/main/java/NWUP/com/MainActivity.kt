@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         if (type != null) {
             if (type == "timerFragment") {
                 loadFragment(TimerFragment())
-                bottom_navigation.menu.getItem(3).setChecked(true)
+                bottom_navigation.menu.getItem(3).isChecked = true
                 return
             }
         }

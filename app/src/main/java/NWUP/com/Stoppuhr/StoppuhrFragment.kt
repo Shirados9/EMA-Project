@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_stoppuhr_main.*
 
-/**
- * A simple [Fragment] subclass.
- */
+
 class StoppuhrFragment : Fragment() {
 
     private var counter = 1
@@ -47,7 +45,7 @@ class StoppuhrFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        stopwatchStart.setOnClickListener { view ->
+        stopwatchStart.setOnClickListener {
             isRunning = if (isRunning) {
                 chronometer.stop()
                 stopwatchShare.show()
@@ -63,7 +61,7 @@ class StoppuhrFragment : Fragment() {
             }
         }
 
-        stopwatchReset.setOnClickListener { view ->
+        stopwatchReset.setOnClickListener {
             chronometer.resetTime()
             chronometer.stop()
             stopwatchStart.setImageResource(R.drawable.ic_play_arrow)
@@ -74,9 +72,10 @@ class StoppuhrFragment : Fragment() {
             isRunning = false
         }
 
-        stopwatchShare.setOnClickListener { view ->
+        //share current time
+        stopwatchShare.setOnClickListener {
             val myIntent = Intent(Intent.ACTION_SEND)
-            myIntent.setType("text/plain")
+            myIntent.type = "text/plain"
             val shareBody = "Look at my time: " + chronometer.text.toString()
             val shareSub = "Your Subject here"
             myIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub)
@@ -84,7 +83,8 @@ class StoppuhrFragment : Fragment() {
             startActivity(Intent.createChooser(myIntent, "Share your time"))
         }
 
-        stopwatchLap.setOnClickListener { view ->
+        //adds current time to RecyclerView
+        stopwatchLap.setOnClickListener {
             RecyclerItems.add(StoppuhrExampleItem("Lap: " + counter++, chronometer.text.toString()))
             stopwatch_recycler_view.adapter?.notifyItemInserted(RecyclerItems.size - 1)
             stopwatch_recycler_view.scrollToPosition(RecyclerItems.size - 1)
@@ -93,7 +93,7 @@ class StoppuhrFragment : Fragment() {
 
     private fun clearRecyclerView() {
         RecyclerItems.clear()
-        stopwatch_recycler_view.adapter?.notifyDataSetChanged();
+        stopwatch_recycler_view.adapter?.notifyDataSetChanged()
         counter = 1
     }
 }
