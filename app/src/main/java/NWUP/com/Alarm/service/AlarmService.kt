@@ -14,7 +14,7 @@ import android.os.Vibrator
 import androidx.core.app.NotificationCompat
 
 
-class AlarmService: Service() {
+class AlarmService : Service() {
 
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var vibrator: Vibrator
@@ -66,5 +66,4 @@ class AlarmService: Service() {
         mediaPlayer.stop()
         vibrator.cancel()
     }
-
 }

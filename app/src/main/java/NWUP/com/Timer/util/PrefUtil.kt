@@ -25,7 +25,6 @@ class PrefUtil {
             sharedPreferencesEditor.apply()
         }
 
-
         private const val PREVIOUS_TIMER_LENGTH_SECONDS_ID =
             "com.nwup.timer.previous_timer_length_seconds"
 
@@ -43,7 +42,6 @@ class PrefUtil {
             sharedPreferencesEditor.apply()
         }
 
-
         private const val TIMER_STATE_ID = "com.nwup.timer.timer_state"
 
         fun getTimerState(context: Context): TimerFragment.TimerState {
@@ -60,7 +58,6 @@ class PrefUtil {
             sharedPreferencesEditor.putInt(TIMER_STATE_ID, ordinal)
             sharedPreferencesEditor.apply()
         }
-
 
         private const val SECONDS_REMAINING_ID = "com.nwup.timer.seconds_remaining"
 

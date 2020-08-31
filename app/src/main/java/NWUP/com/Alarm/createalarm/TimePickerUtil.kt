@@ -4,8 +4,9 @@ import android.os.Build
 
 import android.widget.TimePicker
 
-
-//obtain Timepicker Time with support for older versions
+/**
+ * obtain TimePicker Time with support for older versions
+ */
 object TimePickerUtil {
     fun getTimePickerHour(tp: TimePicker): Int {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

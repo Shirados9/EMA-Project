@@ -24,13 +24,11 @@ class StoppuhrFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_stoppuhr_main, container, false)
     }
 
     override fun onResume() {
         super.onResume()
-
         stopwatch_recycler_view.scrollToPosition(RecyclerItems.size - 1)
     }
 
@@ -40,7 +38,6 @@ class StoppuhrFragment : Fragment() {
         stopwatch_recycler_view.adapter = StoppuhrRecyclerAdapter(RecyclerItems)
         stopwatch_recycler_view.setHasFixedSize(true)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

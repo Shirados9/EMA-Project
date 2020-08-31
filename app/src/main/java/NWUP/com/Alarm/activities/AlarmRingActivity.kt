@@ -55,7 +55,6 @@ class AlarmRingActivity : AppCompatActivity() {
         animateClock()
     }
 
-
     //lets the Alarm Image move
     private fun animateClock() {
         val rotateAnimation =

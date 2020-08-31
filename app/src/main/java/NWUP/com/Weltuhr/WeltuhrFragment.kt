@@ -103,7 +103,6 @@ class WeltuhrFragment : Fragment() {
         val json = sharedPreferences.getString("weltuhr", emptyList)
         val type: Type = object : TypeToken<ArrayList<RecyclerItem>>() {}.type
         RecyclerItems = gson.fromJson(json, type)
-
     }
 
     companion object {

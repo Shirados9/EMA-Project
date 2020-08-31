@@ -7,11 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-//Adapter for AlarmListFragment
+/**
+ * Adapter for AlarmListFragment
+ */
 class AlarmRecyclerViewAdapter(listener: OnClickAlarmListener) :
     RecyclerView.Adapter<AlarmViewHolder>() {
+
     private var alarms: List<Alarm>
     private val listener: OnClickAlarmListener
+
+    init {
+        alarms = ArrayList()
+        this.listener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmViewHolder {
         val itemView: View =
             LayoutInflater.from(parent.context).inflate(R.layout.fragment_alarm_item, parent, false)
@@ -30,12 +39,5 @@ class AlarmRecyclerViewAdapter(listener: OnClickAlarmListener) :
     fun setAlarms(alarms: List<Alarm>) {
         this.alarms = alarms
         notifyDataSetChanged()
-    }
-
-
-
-    init {
-        alarms = ArrayList()
-        this.listener = listener
     }
 }

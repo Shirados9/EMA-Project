@@ -6,11 +6,17 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 
-//Class to access database
+/**
+ * Class to access database
+ */
 class AlarmsListViewModel(application: Application) : AndroidViewModel(application) {
     private val alarmRepository: AlarmRepository =
         AlarmRepository(application)
     val alarmsLiveData: LiveData<List<Alarm>>
+
+    init {
+        alarmsLiveData = alarmRepository.alarmsLiveData
+    }
 
     fun update(alarm: Alarm?) {
         alarmRepository.update(alarm)
@@ -18,7 +24,6 @@ class AlarmsListViewModel(application: Application) : AndroidViewModel(applicati
 
     fun delete(alarm: Alarm?) {
         alarmRepository.delete(alarm)
-
     }
 
     fun deleteAll() {
@@ -27,9 +32,5 @@ class AlarmsListViewModel(application: Application) : AndroidViewModel(applicati
 
     suspend fun getAlarmData(): List<Alarm> {
         return alarmRepository.getAlarmsData()
-    }
-
-    init {
-        alarmsLiveData = alarmRepository.alarmsLiveData
     }
 }

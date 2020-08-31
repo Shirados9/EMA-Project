@@ -17,7 +17,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_alarm_list_alarms.view.*
 import kotlinx.coroutines.launch
 
-//creates the fragment to list all created Alarms and to link the parentfragment to CreateAlarm
+/**
+ * creates the fragment to list all created Alarms and to link the parentfragment to CreateAlarm
+ */
 class AlarmsListFragment : Fragment(),
     OnClickAlarmListener {
     private lateinit var alarmRecyclerViewAdapter: AlarmRecyclerViewAdapter
@@ -26,10 +28,8 @@ class AlarmsListFragment : Fragment(),
     private lateinit var addAlarm: FloatingActionButton
     private lateinit var deleteAllButton: FloatingActionButton
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         alarmRecyclerViewAdapter =
             AlarmRecyclerViewAdapter(this)
@@ -56,23 +56,22 @@ class AlarmsListFragment : Fragment(),
         alarmsRecyclerView.layoutManager = LinearLayoutManager(context)
         alarmsRecyclerView.adapter = alarmRecyclerViewAdapter
 
-
-
         addAlarm = view.findViewById(R.id.add_alarm)
         deleteAllButton = view.delete_alarms
 
         deleteAllButton.setOnClickListener {
             onDeleteAll()
         }
-        addAlarm.setOnClickListener{
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_alarmsListFragment_to_createAlarmFragment)
+        addAlarm.setOnClickListener {
+            Navigation.findNavController(it)
+                .navigate(R.id.action_alarmsListFragment_to_createAlarmFragment)
         }
-
         return view
     }
-
-    //switches the state of the alarm
+    
+    /**
+     * switches the state of the alarm
+     */
     override fun onToggle(alarm: Alarm?) {
         if (alarm != null) {
             if (alarm.started) {
@@ -85,42 +84,40 @@ class AlarmsListFragment : Fragment(),
         }
     }
 
-    /* Looks if any Alarms are started, switchem them off if they are
-        and then deletes all of them from the database
+    /**
+     * Looks if any Alarms are started, switches them off if they are,
+     * and then deletes all of them from the database
      */
-
     private fun onDeleteAll() {
         //to avoid data access on Main Thread
         lifecycleScope.launch {
             val alarms = alarmsListViewModel.getAlarmData()
 
-            for (alarm in alarms){
-                if(alarm.started) {
+            for (alarm in alarms) {
+                if (alarm.started) {
                     context?.let { alarm.cancelAlarmDelete(it) }
                 }
             }
             alarmsListViewModel.deleteAll()
             alarmsRecyclerView.adapter?.notifyDataSetChanged()
-
         }
     }
 
-    /* looks if the clicked Alarm has started, switches it off if it did
-        and then deletes it
+    /**
+     * looks if the clicked Alarm has started, switches it off if it did
+     * and then deletes it
      */
     override fun onItemDelete(alarm: Alarm?) {
         //to avoid data access on Main Thread
         lifecycleScope.launch {
             val ourAlarms = alarmsListViewModel.getAlarmData()
-            for(i in ourAlarms) {
-                if(i.alarmId == alarm!!.alarmId) {
+            for (i in ourAlarms) {
+                if (i.alarmId == alarm!!.alarmId) {
                     context?.let { alarm.cancelAlarmDelete(it) }
                 }
             }
-
             alarmsListViewModel.delete(alarm)
             alarmsRecyclerView.adapter?.notifyDataSetChanged()
         }
-
     }
 }

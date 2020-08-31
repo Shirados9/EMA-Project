@@ -14,8 +14,9 @@ import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_alarm_create_alarm.*
 import java.util.*
 
-
-//creates the fragment to create alarms and save it in the database
+/**
+ * creates the fragment to create alarms and save it in the database
+ */
 class CreateAlarmFragment : Fragment() {
     private var createAlarmViewModel: CreateAlarmViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,6 @@ class CreateAlarmFragment : Fragment() {
     }
 
     override fun onCreateView(
-
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -36,6 +36,7 @@ class CreateAlarmFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragment_createalarm_timePicker.setIs24HourView(true)
+
         fragment_createalarm_recurring.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 fragment_createalarm_recurring_options.visibility = View.VISIBLE
@@ -52,7 +53,9 @@ class CreateAlarmFragment : Fragment() {
         }
     }
 
-    //creates alarmItem to input in database
+    /**
+     * creates alarmItem to input in database
+     */
     private fun scheduleAlarm() {
         val alarmId: Int = Random().nextInt(Int.MAX_VALUE)
         val alarm = Alarm(
@@ -73,6 +76,4 @@ class CreateAlarmFragment : Fragment() {
         createAlarmViewModel?.insert(alarm)
         context?.let { alarm.schedule(it) }
     }
-
-
 }

@@ -8,7 +8,6 @@ import android.os.Build
 import android.widget.Toast
 import java.util.*
 
-
 class AlertReceiver : BroadcastReceiver() {
     companion object {
         const val RECURRING = "RECURRING"
@@ -22,7 +21,6 @@ class AlertReceiver : BroadcastReceiver() {
         const val TITLE = "TITLE"
     }
 
-
     override fun onReceive(context: Context?, intent: Intent?) {
 
         if (Intent.ACTION_BOOT_COMPLETED == intent!!.action) {
@@ -34,11 +32,10 @@ class AlertReceiver : BroadcastReceiver() {
             Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show()
             val bundle = intent.extras
             if (bundle!!.getBoolean(RECURRING)) {
-                if(alarmIsToday(intent)) {
+                if (alarmIsToday(intent)) {
                     startAlarmService(context, intent)
                 }
-            }
-            else {
+            } else {
                 startAlarmService(context, intent)
             }
         }

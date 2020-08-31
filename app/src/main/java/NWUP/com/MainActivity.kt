@@ -4,21 +4,19 @@ import NWUP.com.Alarm.activities.AlarmFragment
 import NWUP.com.Stoppuhr.StoppuhrFragment
 import NWUP.com.Timer.TimerFragment
 import NWUP.com.Weltuhr.WeltuhrFragment
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         bottom_navigation.setOnNavigationItemSelectedListener { menuItem ->
+            // return if same menu item is clicked again
             if (menuItem.itemId == bottom_navigation.selectedItemId)
                 return@setOnNavigationItemSelectedListener true
             when (menuItem.itemId) {
@@ -44,6 +42,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // if user clicks on Timer notification, intent gets send here
+        // opens TimerFragment
         val type = intent.getStringExtra("startTimeFragment")
         if (type != null) {
             if (type == "timerFragment") {
@@ -52,13 +52,8 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
-//        if (intent.action.equals("startTimeFragment"))
-//            loadFragment(TimerFragment())
-
         //Default fragment
         loadFragment(WeltuhrFragment())
-
-
     }
 
     private fun loadFragment(fragment: Fragment) {
@@ -66,13 +61,5 @@ class MainActivity : AppCompatActivity() {
             fragmentTransaction.replace(R.id.frame_layout, fragment)
             fragmentTransaction.commit()
         }
-
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-
-        Toast.makeText(this, "Test", Toast.LENGTH_LONG).show()
-
     }
 }

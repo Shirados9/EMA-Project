@@ -21,27 +21,29 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 
-//Alarm class which contains all necessary information for an alarm, also the dataobject which goes in the database
+/**
+ * Alarm class which contains all necessary information for an alarm,
+ * also the dataobject which goes in the database
+ */
 @Entity(tableName = "alarm_table")
 class Alarm(
     @PrimaryKey
-    var alarmId:Int,
-    var hour:Int,
-    var minute:Int,
-    var title:String,
+    var alarmId: Int,
+    var hour: Int,
+    var minute: Int,
+    var title: String,
     var started: Boolean,
-    var recurring:Boolean,
-    var monday:Boolean,
-    var tuesday:Boolean,
-    var wednesday:Boolean,
-    var thursday:Boolean,
-    var friday:Boolean,
-    var saturday:Boolean,
-    var sunday:Boolean
+    var recurring: Boolean,
+    var monday: Boolean,
+    var tuesday: Boolean,
+    var wednesday: Boolean,
+    var thursday: Boolean,
+    var friday: Boolean,
+    var saturday: Boolean,
+    var sunday: Boolean
 ) {
 
-
-    fun schedule(context:Context) {
+    fun schedule(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         val intent = Intent(context, AlertReceiver::class.java)
@@ -72,35 +74,65 @@ class Alarm(
         if (!recurring) {
             var toastText: String? = null
             try {
-                toastText = String.format("Einmaliger Alarm \"%s\" erstellt um %02d:%02d", title, hour, minute)
+                toastText = String.format(
+                    "Einmaliger Alarm \"%s\" erstellt um %02d:%02d",
+                    title,
+                    hour,
+                    minute
+                )
             } catch (e: Exception) {
                 e.printStackTrace()
             }
             Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmPendingIntent)
+            alarmManager.setExact(
+                AlarmManager.RTC_WAKEUP,
+                calendar.timeInMillis,
+                alarmPendingIntent
+            )
         } else {
-            if(getRecurringDaysText() == "") {
+            if (getRecurringDaysText() == "") {
                 var toastText: String? = null
                 try {
-                    toastText = String.format("Einmaliger Alarm \"%s\" erstellt um %02d:%02d", title, hour, minute)
+                    toastText = String.format(
+                        "Einmaliger Alarm \"%s\" erstellt um %02d:%02d",
+                        title,
+                        hour,
+                        minute
+                    )
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
                 Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmPendingIntent)
-            }
-            else {
-                val toastText = String.format("Wiederholender Alarm \"%s\" erstellt für %s um %02d:%02d", title, getRecurringDaysText(), hour, minute)
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    alarmPendingIntent
+                )
+            } else {
+                val toastText = String.format(
+                    "Wiederholender Alarm \"%s\" erstellt für %s um %02d:%02d",
+                    title,
+                    getRecurringDaysText(),
+                    hour,
+                    minute
+                )
                 Toast.makeText(context, toastText, Toast.LENGTH_LONG).show()
                 val runDaily = 24 * 60 * 60 * 1000.toLong()
-                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, runDaily, alarmPendingIntent)
+                alarmManager.setRepeating(
+                    AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis,
+                    runDaily,
+                    alarmPendingIntent
+                )
             }
         }
 
         started = true
     }
 
-    //sends intent to cancel pending alarm
+    /**
+     * sends intent to cancel pending alarm
+     */
     fun cancelAlarm(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlertReceiver::class.java)
@@ -113,7 +145,9 @@ class Alarm(
         Log.i("cancel", toastText)
     }
 
-    // without the line "started = false" to prevent the observer from using onToggle
+    /**
+     * without the line "started = false" to prevent the observer from using onToggle
+     */
     fun cancelAlarmDelete(context: Context) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlertReceiver::class.java)
@@ -125,11 +159,11 @@ class Alarm(
         Log.i("cancel", toastText)
     }
 
-    //gets String to put in Toast in schedule
+    /**
+     * gets String to put in Toast in schedule
+     */
     fun getRecurringDaysText(): Any? {
-        if (!recurring) {
-            return null
-        }
+        if (!recurring) return null
 
         var days = ""
         if (monday) days += "Mo "
@@ -142,5 +176,4 @@ class Alarm(
 
         return days
     }
-
 }
