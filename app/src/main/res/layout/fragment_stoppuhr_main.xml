@@ -47,6 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:tint="@color/colorPrimaryDark"
+        android:visibility="invisible"
         app:backgroundTint="@color/colorOrange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +55,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stopwatch_recycler_view"
         app:layout_constraintVertical_bias="0.501"
-        app:srcCompat="@drawable/ic_replay"
-        android:visibility="invisible"/>
+        app:srcCompat="@drawable/ic_replay" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/stopwatchShare"

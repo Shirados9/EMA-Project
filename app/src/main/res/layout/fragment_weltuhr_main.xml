@@ -29,27 +29,25 @@
                 android:id="@+id/recycler_weltuhr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/fragment_weltuhr_recyclerview">
-
-
-            </androidx.recyclerview.widget.RecyclerView>
+                tools:listitem="@layout/fragment_weltuhr_recyclerview" />
 
         </LinearLayout>
+        
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/gettopicktimezone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:tint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorOrange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.954"
-        app:backgroundTint="@color/colorOrange"
-        android:tint="@color/colorPrimaryDark"
-        app:srcCompat="@drawable/ic_add_circle_add"/>
+        app:srcCompat="@drawable/ic_add_circle_add" />
 
     <TextView
         android:id="@+id/zeitzoneuschrift"

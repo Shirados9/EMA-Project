@@ -13,10 +13,10 @@
         android:text="@string/ring_ring"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorOrange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/colorOrange" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ringactivity_imageview"
@@ -26,29 +26,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ringactivity_textview"
-        app:srcCompat="@drawable/ic_access_alarm_orange_24dp"
-        />
+        app:srcCompat="@drawable/ic_access_alarm_orange_24dp" />
 
     <Button
         android:id="@+id/ringactivity_ring_dismiss"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/ausschalten"
+        android:tint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorOrange"
         app:layout_constraintBottom_toTopOf="@+id/ringactivity_ring_snooze"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:tint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorOrange"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/ringactivity_ring_snooze"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/snooze"
+        android:tint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorOrange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:tint="@color/colorPrimaryDark"
-        app:backgroundTint="@color/colorOrange"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
