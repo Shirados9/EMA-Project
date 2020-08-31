@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">NWUP</string>
 
+    <!-- nav menu -->
+    <string name="weltuhr">Weltuhr</string>
+    <string name="alarm">Alarm</string>
+    <string name="stoppuhr">Stoppuhr</string>
+    <string name="timer">Timer</string>
+    
     <!-- Toolbar -->
     <string name="nwup_clock">NWUP-Clock</string>
 

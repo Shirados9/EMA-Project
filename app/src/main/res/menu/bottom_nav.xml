@@ -3,17 +3,17 @@
     <item
         android:id="@+id/weltuhr"
         android:icon="@drawable/ic_world"
-        android:title="Weltuhr" />
+        android:title="@string/weltuhr" />
     <item
         android:id="@+id/alarm"
         android:icon="@drawable/ic_access_alarm_orange_24dp"
-        android:title="Alarm" />
+        android:title="@string/alarm" />
     <item
         android:id="@+id/stoppuhr"
         android:icon="@drawable/ic_timer_orange_24dp"
-        android:title="Stoppuhr" />
+        android:title="@string/stoppuhr" />
     <item
         android:id="@+id/timer"
         android:icon="@drawable/ic_hourglass_empty_orange_24dp"
-        android:title="Timer" />
+        android:title="@string/timer" />
 </menu>
