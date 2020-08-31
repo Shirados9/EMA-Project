@@ -42,6 +42,8 @@ class StoppuhrFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        clearRecyclerView()
+
         stopwatchStart.setOnClickListener {
             isRunning = if (isRunning) {
                 chronometer.stop()
