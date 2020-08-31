@@ -1,0 +1,7 @@
+# NWUP
+Project for Entwicklung mobiler Andwendungen
+
+Dieses Projekt wurde von Darwin Schulz und Daniel Grosmayer entwickelt und beinhaltet eine Android-App, welche eine Weltuhr, einen Wecker, eine Stoppuhr und einen Timer implementiert hat.
+
+In dem Ordner "ProjektDoku" befindet sich unsere Technische Dokumentation sowie die Zeiterfassung und unsere Demo.
+In "ProjektSkizze" befinden sich usnere ersten Ideen zur Gestaltung unserer App.
