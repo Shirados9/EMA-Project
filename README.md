@@ -5,4 +5,4 @@ Dieses Projekt wurde von Darwin Schulz und Daniel Grosmayer entwickelt und beinh
 
 In dem Ordner "Projektdoku_Vorstellung" befindet sich unsere Technische Dokumentation, sowie die Zeiterfassung und unsere Demo.<br />
 In "ProjektSkizze" befinden sich usnere ersten Ideen zur Gestaltung unserer App.<br />
-In ProjektAPK befindet sich die APK des Projektes
+In "ProjektAPK" befindet sich die APK des Projektes
